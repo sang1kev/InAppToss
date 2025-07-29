@@ -12,7 +12,6 @@ public class PlayerCtrl : MonoBehaviour
 
     public bool isGameStart = false;
     private bool isDashAvail = false;
-    private bool isBoxHit = false;
 
     void Start()
     {
@@ -20,31 +19,36 @@ public class PlayerCtrl : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
     }
 
-    // 업데이트 주기마다 높이가 달라지는 점을 고치기 위해 Fixed사용
-    void FixedUpdate()
-    {
-        if (isGameStart && isDashAvail)
-        {
-            Dash();
-        }
-    }
-
     private void Dash()
     {
         Vector3 velocity = inputDir * playerForce;
         playerRb.AddForceX(velocity.x * 0.5f, ForceMode2D.Impulse);
         playerRb.AddForceY(velocity.y, ForceMode2D.Impulse);
+
+        isDashAvail = false;
     }
 
     public void InputJoyStick(float x, float y)
     {
+        if (!isDashAvail)
+        {
+            return;
+        }
+
+        inputDir = Vector3.zero;
+        playerRb.AddForce(Vector3.zero);
+
         inputDir = new Vector3(x, y, 0);
+
+        playerAnim.SetTrigger("Dash");
 
         if (isGameStart && inputDir.x != 0)
         {
             int isXPositive = inputDir.x > 0 ? 1 : -1;
             transform.localScale = new Vector3(isXPositive, 1, 1);
         }
+
+        Dash();
     }
 
     void OnCollisionEnter2D (Collision2D other)
@@ -52,8 +56,6 @@ public class PlayerCtrl : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isDashAvail = true;
-            inputDir = Vector3.zero;
-            playerRb.AddForce(Vector3.zero);
         }
     }
 
@@ -62,7 +64,6 @@ public class PlayerCtrl : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isDashAvail = false;
-            playerAnim.SetTrigger("Dash");
         }
     }
 
@@ -74,15 +75,6 @@ public class PlayerCtrl : MonoBehaviour
             inputDir = Vector3.zero;
             playerRb.AddForce(Vector3.zero);
             playerAnim.SetTrigger("AttWorked");
-
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Box"))
-        {
-            isDashAvail = false;
         }
     }
 }

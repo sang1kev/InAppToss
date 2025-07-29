@@ -53,5 +53,8 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
         handlerUI.transform.localPosition = Vector3.zero;
         backgroundUI.SetActive(false);
+
+        startPos = Vector3.zero;
+        currPos = Vector3.zero;
     }
 }
