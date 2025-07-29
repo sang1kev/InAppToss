@@ -27,11 +27,11 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < initCount; i++) // initCount(10)까지 반복
         {
-            poolingObjectQueue.Enqueue(CreateBlock()); // 큐에 생성된 블록을 넣음
+            poolingObjectQueue.Enqueue(CreateObj()); // 큐에 생성된 블록을 넣음
         }
     }
     
-    private Block CreateBlock() // 블록 생성 로직
+    private Block CreateObj() // 블록 생성 로직
     {
         var newObj = Instantiate(blockPrefab).GetComponent<Block>(); // 블록 생성 후, Block 컴포넌트 가져옴
         newObj.gameObject.SetActive(false); // 미리 게임 오브젝트를 비활성화 시켜둠
@@ -54,7 +54,7 @@ public class ObjectPool : MonoBehaviour
         }
         else // 큐 안에 1개도 없다면
         {
-            var newObj = Instance.CreateBlock(); // 블록 생성
+            var newObj = Instance.CreateObj(); // 블록 생성
             newObj.gameObject.SetActive(true); // 블록 오브젝트 활성화
             newObj.transform.SetParent(Instance.transform); // 부모 오브젝트 지정
             
