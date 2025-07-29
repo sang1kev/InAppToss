@@ -12,6 +12,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public bool isGameStart = false;
     private bool isDashAvail = false;
+    private bool isBoxHit = false;
 
     void Start()
     {
@@ -38,7 +39,6 @@ public class PlayerCtrl : MonoBehaviour
     public void InputJoyStick(float x, float y)
     {
         inputDir = new Vector3(x, y, 0);
-        playerAnim.SetTrigger("Dash");
 
         if (isGameStart && inputDir.x != 0)
         {
@@ -62,6 +62,7 @@ public class PlayerCtrl : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isDashAvail = false;
+            playerAnim.SetTrigger("Dash");
         }
     }
 
@@ -73,6 +74,7 @@ public class PlayerCtrl : MonoBehaviour
             inputDir = Vector3.zero;
             playerRb.AddForce(Vector3.zero);
             playerAnim.SetTrigger("AttWorked");
+
         }
     }
 
