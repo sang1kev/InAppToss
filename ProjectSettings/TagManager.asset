@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ground
   - Box
-  tags: []
   layers:
   - Default
   - TransparentFX

@@ -7,27 +7,27 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
     public static BlockManager Instance;
-    
+
     private enum PosType { Left, Right }
     private enum LevelType { Lv1, Lv2, Lv3, Lv4, Infinity }
     private PosType e_pos = PosType.Left;
     [SerializeField] private LevelType e_level = LevelType.Lv1;
-    
-    [Header("ìƒì„± ìœ„ì¹˜ ê°’"), Space(5)]
+
+    [Header("»ý¼º À§Ä¡ °ª"), Space(5)]
     [SerializeField] private Vector3 leftPos;
     [SerializeField] private Vector3 rightPos;
-    
-    [Header("ì´ë™ ì†ë„"), Space(5)]
+
+    [Header("ÀÌµ¿ ¼Óµµ"), Space(5)]
     public float moveSpeed = 1.4f;
     private float currentTime;
-    
-    [Header("ë ˆë²¨ ì‹œìŠ¤í…œ"), Space(5)]
-    [SerializeField] private float levelUpTime = 20f; // ë ˆë²¨ì—… ì£¼ê¸°(ì´ˆ)
-    [SerializeField] private float createDelay = 1.5f; // ë¸”ë¡ ìƒì„± ì£¼ê¸°
-    [SerializeField] private float speedAcceleration = 0.2f; // ë¸”ë¡ ì´ë™ì†ë„ ê°€ì† ë³€ìˆ˜
-    [SerializeField] private int currentLevel = 1; // ë ˆë²¨ ì‹œìŠ¤í…œ
-    [SerializeField] private int maxBlockCount = 6; // í˜„ìž¬ ë ˆë²¨ì—ì„œ í—ˆìš©í•˜ëŠ” ìµœëŒ€ ë¸”ë¡ ìˆ˜
-    
+
+    [Header("·¹º§ ½Ã½ºÅÛ"), Space(5)]
+    [SerializeField] private float levelUpTime = 20f; // ·¹º§¾÷ ÁÖ±â(ÃÊ)
+    [SerializeField] private float createDelay = 1.5f; // ºí·Ï »ý¼º ÁÖ±â
+    [SerializeField] private float speedAcceleration = 0.2f; // ºí·Ï ÀÌµ¿¼Óµµ °¡¼Ó º¯¼ö
+    [SerializeField] private int currentLevel = 1; // ·¹º§ ½Ã½ºÅÛ
+    [SerializeField] private int maxBlockCount = 6; // ÇöÀç ·¹º§¿¡¼­ Çã¿ëÇÏ´Â ÃÖ´ë ºí·Ï ¼ö
+
     private void Awake()
     {
         Instance = this;
@@ -41,19 +41,19 @@ public class BlockManager : MonoBehaviour
     private void Update()
     {
         currentTime += Time.deltaTime;
-        
+
         if (currentTime >= levelUpTime)
         {
             moveSpeed += speedAcceleration;
             currentTime = 0f;
-            
-            CheckLevelUp(); // ì†ë„ê°€ ì˜¤ë¥¼ ë•Œë§ˆë‹¤ ë ˆë²¨ì—… ì²´í¬
+
+            CheckLevelUp(); // ¼Óµµ°¡ ¿À¸¦ ¶§¸¶´Ù ·¹º§¾÷ Ã¼Å©
         }
     }
-    
-    void CheckLevelUp() // ë ˆë²¨ì—… ê´€ë¦¬ í•¨ìˆ˜
+
+    void CheckLevelUp() // ·¹º§¾÷ °ü¸® ÇÔ¼ö
     {
-        // ì†ë„ì— ë”°ë¼ ë ˆë²¨ê³¼ ë¸”ë¡ ìˆ˜ë¥¼ ì¡°ì ˆ ( ì•„ëž˜ ifë¬¸ ë¶€í„° ìˆœì°¨ì ìœ¼ë¡œ ì˜¬ë¼ì˜´ )
+        // ¼Óµµ¿¡ µû¶ó ·¹º§°ú ºí·Ï ¼ö¸¦ Á¶Àý ( ¾Æ·¡ if¹® ºÎÅÍ ¼øÂ÷ÀûÀ¸·Î ¿Ã¶ó¿È )
         if (moveSpeed >= 10.0f && currentLevel < 5) e_level = LevelType.Infinity;
         else if (moveSpeed >= 8.0f && currentLevel < 4) e_level = LevelType.Lv4;
         else if (moveSpeed >= 5.0f && currentLevel < 3) e_level = LevelType.Lv3;
@@ -68,7 +68,7 @@ public class BlockManager : MonoBehaviour
                 SetLevelSystem(2, 5, 1.4f, 15f, 0.25f);
                 break;
             case LevelType.Lv3:
-                SetLevelSystem(3, 4, 1.3f, 20f,0.3f);
+                SetLevelSystem(3, 4, 1.3f, 20f, 0.3f);
                 break;
             case LevelType.Lv4:
                 SetLevelSystem(4, 3, 1.2f, 25f, 0.4f);
@@ -79,8 +79,8 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-    // ë ˆë²¨ ì‹œìŠ¤í…œ ì„¤ì • ë¡œì§
-    private void SetLevelSystem(int _level, int _maxBlockCount, 
+    // ·¹º§ ½Ã½ºÅÛ ¼³Á¤ ·ÎÁ÷
+    private void SetLevelSystem(int _level, int _maxBlockCount,
         float _createDelay, float _levelUpTime, float _speedAcceleration)
     {
         currentLevel = _level;
@@ -88,20 +88,20 @@ public class BlockManager : MonoBehaviour
         createDelay = _createDelay;
         levelUpTime = _levelUpTime;
         speedAcceleration = _speedAcceleration;
-        
+
     }
-    
-    // ë¸”ë¡ ìƒì„± ë¡œì§
+
+    // ºí·Ï »ý¼º ·ÎÁ÷
     IEnumerator CreateBlockLoop()
     {
-        // ê²Œìž„ì´ ëë‚  ë•Œê¹Œì§€ ê³„ì† ë°˜ë³µ
-        while (true) 
+        // °ÔÀÓÀÌ ³¡³¯ ¶§±îÁö °è¼Ó ¹Ýº¹
+        while (true)
         {
-            // í˜„ìž¬ í™œì„±í™”ëœ ë¸”ë¡ ìˆ˜ê°€ ìµœëŒ€ì¹˜ë³´ë‹¤ ì ì„ ë•Œë§Œ ìƒˆë¡œ ìƒì„±
+            // ÇöÀç È°¼ºÈ­µÈ ºí·Ï ¼ö°¡ ÃÖ´ëÄ¡º¸´Ù ÀûÀ» ¶§¸¸ »õ·Î »ý¼º
             if (ObjectPool.Instance.ActiveBlockCount < maxBlockCount)
             {
                 Block newBlock = ObjectPool.GetObject();
-        
+
                 switch (e_pos)
                 {
                     case PosType.Left:
@@ -111,14 +111,14 @@ public class BlockManager : MonoBehaviour
                         newBlock.transform.position = rightPos;
                         break;
                 }
-                
+
                 e_pos = e_pos == PosType.Left ? PosType.Right : PosType.Left;
-                
+
                 yield return new WaitForSeconds(createDelay);
             }
             else
             {
-                // ë¸”ë¡ì´ ìµœëŒ€ì¹˜ë¼ë©´ ìž ì‹œ ê¸°ë‹¤ë ¸ë‹¤ê°€ ë‹¤ì‹œ ì²´í¬
+                // ºí·ÏÀÌ ÃÖ´ëÄ¡¶ó¸é Àá½Ã ±â´Ù·È´Ù°¡ ´Ù½Ã Ã¼Å©
                 yield return new WaitForSeconds(0.1f);
             }
         }

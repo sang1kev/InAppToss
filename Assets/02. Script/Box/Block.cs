@@ -1,27 +1,56 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    [SerializeField] private float restartYPos; // ë¸”ë¡ ì´ˆê¸° Y ê°’
-    [SerializeField] private float returnYPos; // ë¸”ë¡ì´ ìµœëŒ€ë¡œ ì´ë™í•  ìˆ˜ ìˆëŠ” ì¢Œí‘œê°’
+    [SerializeField] private float restartYPos; // ºí·Ï ÃÊ±â Y °ª
+    [SerializeField] private float returnYPos; // ºí·ÏÀÌ ÃÖ´ë·Î ÀÌµ¿ÇÒ ¼ö ÀÖ´Â ÁÂÇ¥°ª
+
+    private Animator blockAnim;
+
+    private void Start()
+    {
+        blockAnim = GetComponent<Animator>();
+
+        blockAnim.SetBool("isBroke", false);
+    }
 
     private void Update()
     {
         MoveBlock();
     }
-    
-    void MoveBlock() // ë¸”ë¡ ì´ë™ í•¨ìˆ˜
+
+    void MoveBlock() // ºí·Ï ÀÌµ¿ ÇÔ¼ö
     {
-        // returnVecì„ ë„˜ì–´ì„œê±°ë‚˜ ê°™ì•„ì§ˆ ë•Œ
+        // returnVecÀ» ³Ñ¾î¼­°Å³ª °°¾ÆÁú ¶§
         if (transform.position.y <= returnYPos)
         {
-            // ìœ„ì¹˜ë¥¼ ì¬ì§€ì •í•˜ëŠ” ëŒ€ì‹ , ì˜¤ë¸Œì íŠ¸ í’€ì— ë°˜í™˜
+            // À§Ä¡¸¦ ÀçÁöÁ¤ÇÏ´Â ´ë½Å, ¿ÀºêÁ§Æ® Ç®¿¡ ¹İÈ¯
+            blockAnim.SetBool("isBroke", false);
             ObjectPool.Instance.ReturnObject(this);
         }
         else
         {
             transform.position += Vector3.down * BlockManager.Instance.moveSpeed * Time.deltaTime;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(BrokeCoroutine());
+        }
+    }
+
+    IEnumerator BrokeCoroutine()
+    {
+        blockAnim.SetBool("isBroke", true);
+        yield return new WaitForSeconds(0.3f);
+
+        blockAnim.SetBool("isBroke", true);
+        yield return new WaitForSeconds(0.2f);
+        ObjectPool.Instance.ReturnObject(this);
     }
 }
