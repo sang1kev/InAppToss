@@ -22,6 +22,10 @@ public class PlayerCtrl : MonoBehaviour
     private void Dash()
     {
         Vector3 velocity = inputDir * playerForce;
+
+        //중력에 의한 force 초기화
+        playerRb.linearVelocity = Vector3.zero;
+
         playerRb.AddForceX(velocity.x * 0.5f, ForceMode2D.Impulse);
         playerRb.AddForceY(velocity.y, ForceMode2D.Impulse);
 
