@@ -66,6 +66,15 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isDashAvail = false;
+            StartCoroutine(GroundCollapse());
+        }
+    }
+
     IEnumerator GroundCollapse()
     {
         yield return new WaitForSeconds(2.25f);
@@ -74,15 +83,6 @@ public class PlayerCtrl : MonoBehaviour
 
         yield return new WaitForSeconds(2.25f);
         groundAnim.gameObject.SetActive(false);
-    }
-
-    void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isDashAvail = false;
-            StartCoroutine(GroundCollapse());
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
