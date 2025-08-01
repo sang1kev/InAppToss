@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     private Animator playerAnim;
+    private Animator groundAnim;
 
     private Vector3 inputDir;
 
@@ -17,6 +19,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
+        groundAnim = GameObject.Find("Ground").GetComponent<Animator>();
     }
 
     private void Dash()
@@ -63,11 +66,22 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
+    IEnumerator GroundCollapse()
+    {
+        yield return new WaitForSeconds(2.25f);
+
+        groundAnim.SetTrigger("Broke");
+
+        yield return new WaitForSeconds(2.25f);
+        groundAnim.gameObject.SetActive(false);
+    }
+
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             isDashAvail = false;
+            StartCoroutine(GroundCollapse());
         }
     }
 

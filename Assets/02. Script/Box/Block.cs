@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    [SerializeField] private float restartYPos; // 블록 초기 Y 값
-    [SerializeField] private float returnYPos; // 블록이 최대로 이동할 수 있는 좌표값
-
     private Animator blockAnim;
 
     private void Start()
@@ -18,22 +15,15 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
+        if (UIManager.Instance != null && !UIManager.Instance.IsGameStarted) 
+            return;
+        
         MoveBlock();
     }
 
-    void MoveBlock() // 블록 이동 함수
+    void MoveBlock() // 占쏙옙占?占싱듸옙 占쌉쇽옙
     {
-        // returnVec을 넘어서거나 같아질 때
-        if (transform.position.y <= returnYPos)
-        {
-            // 위치를 재지정하는 대신, 오브젝트 풀에 반환
-            blockAnim.SetBool("isBroke", false);
-            ObjectPool.Instance.ReturnObject(this);
-        }
-        else
-        {
-            transform.position += Vector3.down * BlockManager.Instance.moveSpeed * Time.deltaTime;
-        }
+        transform.position += Vector3.down * BlockManager.moveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -41,6 +31,12 @@ public class Block : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartCoroutine(BrokeCoroutine());
+        }
+
+        if (other.CompareTag("Dead Zone"))
+        {
+            blockAnim.SetBool("isBroke", false);
+            ObjectPool.Instance.ReturnObject(this);
         }
     }
 
