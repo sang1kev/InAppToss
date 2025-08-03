@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     private GameObject startSet;
     private GameObject inGameSet;
+    
     private Animator groundAnim;
     
     public bool IsGameStarted { get; private set; }
@@ -42,13 +43,13 @@ public class UIManager : MonoBehaviour
         if (IsGameStarted) 
             return;
 
-        // 모바???�치 체크
+        // 모바???�치 체크
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             StartCoroutine(StartGame());
         }
 
-        // PC ?�스?�용 마우???�릭 체크
+        // PC ?�스?�용 마우???�릭 체크
         if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(StartGame());
@@ -64,7 +65,7 @@ public class UIManager : MonoBehaviour
         
         float startTime = 3f;
 
-        // 3�?카운?�다??
+        // 3�?카운?�다??
         while (startTime > 0f)
         {
             noticeText.text = Mathf.Ceil(startTime).ToString();
