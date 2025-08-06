@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    private GameManager gameManager;
+
     private Rigidbody2D playerRb;
     private Animator playerAnim;
     private Animator groundAnim;
@@ -16,6 +18,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         groundAnim = GameObject.Find("Ground").GetComponent<Animator>();
@@ -71,6 +74,10 @@ public class PlayerCtrl : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D other)
     {
+        if (!gameManager.IsGameStarted)
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Ground"))
         {
             ISDashAvail = false;

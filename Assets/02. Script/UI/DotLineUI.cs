@@ -4,7 +4,8 @@ using UnityEngine;
 public class DotLineUI : MonoBehaviour
 {
     [SerializeField] private RectTransform canvasRect;
-    [SerializeField] private GameObject dotPrefab;
+    [SerializeField] private GameObject dotDashPrefab;
+    [SerializeField] private GameObject dotNoDashPrefab;
     [SerializeField] private int maxDots = 10;     // 최대 점 개수
     [SerializeField] private float dotSpacing = 30f; // 점 간격 (픽셀)
 
@@ -21,13 +22,13 @@ public class DotLineUI : MonoBehaviour
         // 점 미리 생성
         for (int i = 0; i < maxDots; i++)
         {
-            GameObject dotDash = Instantiate(dotPrefab, transform);
+            GameObject dotDash = Instantiate(dotDashPrefab, transform);
             dotDash.SetActive(false);
             dotsDash.Add(dotDash.GetComponent<RectTransform>());
         }
         for (int i = 0; i < maxDots; i++)
         {
-            GameObject dotNoDash = Instantiate(dotPrefab, transform);
+            GameObject dotNoDash = Instantiate(dotNoDashPrefab, transform);
             dotNoDash.SetActive(false);
             dotsNoDash.Add(dotNoDash.GetComponent<RectTransform>());
         }
@@ -45,28 +46,32 @@ public class DotLineUI : MonoBehaviour
 
         int activeDots = Mathf.Min(maxDots, Mathf.FloorToInt(distance / dotSpacing));
 
-        //List<RectTransform> dots = playerCtrl.ISDashAvail ? dotsDash : dotsNoDash;
+        List<RectTransform> dots = playerCtrl.ISDashAvail ? dotsDash : dotsNoDash;
 
         for (int i = 0; i < maxDots; i++)
         {
             if (i < activeDots)
             {
-                dotsDash[i].gameObject.SetActive(true);
+                dots[i].gameObject.SetActive(true);
                 Vector3 pos = startScreenPos + direction * (i * dotSpacing);
                 
-                dotsDash[i].position = pos;
+                dots[i].position = pos;
             }
             else
             {
-                dotsDash[i].gameObject.SetActive(false);
+                dots[i].gameObject.SetActive(false);
             }
         }
     }
 
     public void HideDots()
     {
-        //List<RectTransform> dots = playerCtrl.ISDashAvail ? dotsDash : dotsNoDash;
         foreach (var dot in dotsDash)
+        {
+            dot.gameObject.SetActive(false);
+        }
+
+        foreach (var dot in dotsNoDash)
         {
             dot.gameObject.SetActive(false);
         }

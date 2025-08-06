@@ -25,7 +25,7 @@ public class BlockManager : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.Instance != null && !UIManager.Instance.IsGameStarted) 
+        if (GameManager.Instance != null && !GameManager.Instance.IsGameStarted) 
             return;
         
         currentTime += Time.deltaTime;
@@ -79,7 +79,7 @@ public class BlockManager : MonoBehaviour
 	{
     	while (true)
     	{
-        	if (UIManager.Instance == null || !UIManager.Instance.IsGameStarted)
+        	if (GameManager.Instance == null || !GameManager.Instance.IsGameStarted)
         	{
             	yield return null;
             	continue;

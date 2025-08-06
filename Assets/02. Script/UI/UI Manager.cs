@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static UIManager Instance;
+    public static GameManager Instance;
 
     private PlayerCtrl player;
 
