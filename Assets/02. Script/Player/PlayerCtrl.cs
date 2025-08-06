@@ -64,6 +64,10 @@ public class PlayerCtrl : MonoBehaviour
         {
             isDashAvail = true;
         }
+        if (other.gameObject.CompareTag("Dead Zone"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     void OnCollisionExit2D(Collision2D other)
@@ -87,7 +91,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Box") && !isDashAvail)
         {
             isDashAvail = true;
             inputDir = Vector3.zero;

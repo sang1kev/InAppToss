@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     private PlayerCtrl playerCtrl;
+    private DotLineUI dotLineUI;
+    private Transform playerTf;
 
     [SerializeField] private GameObject backgroundUI;
     [SerializeField] private GameObject handlerUI;
@@ -17,6 +19,8 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     void Start()
     {
         playerCtrl = FindFirstObjectByType<PlayerCtrl>();
+        dotLineUI = FindFirstObjectByType<DotLineUI>();
+        playerTf = GameObject.FindGameObjectWithTag("Player").transform;
         backgroundUI.SetActive(false);
     }
 
@@ -26,8 +30,13 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         Vector3 dragDir = (currPos - startPos);
     
         float distance = Mathf.Min(dragDir.magnitude, maxDist);
+        float movePower = distance / maxDist;
+
+        playerDir = -1 * movePower * dragDir.normalized;
 
         handlerUI.transform.position = startPos + dragDir.normalized * distance;
+
+        dotLineUI.UpdateDots(playerTf.position, playerTf.position + (playerDir.normalized * movePower * 3f));
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -46,8 +55,7 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         float distance = Mathf.Min(finalDir.magnitude, maxDist);
         float movePower = distance / maxDist;
 
-        int invDir = -1;
-        Vector3 playerDir = invDir * movePower * finalDir.normalized;
+        playerDir = -1 * movePower * finalDir.normalized;
 
         playerCtrl.InputJoyStick(playerDir.x, playerDir.y);
 
@@ -56,5 +64,7 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
         startPos = Vector3.zero;
         currPos = Vector3.zero;
+
+        dotLineUI.HideDots();
     }
 }

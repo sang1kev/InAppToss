@@ -3,35 +3,126 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private Transform target;
+    private Rigidbody2D targetRb;
+    private Camera cam;
 
-    [SerializeField] private Vector3 offset = new Vector3(0, 0, -10);
-    [SerializeField] private Vector3 minBoundary = new Vector3(-2f, 0f, 0f);
-    [SerializeField] private Vector3 maxBoundary = new Vector3(2f, 0f, 0f);
+    #region Camera Follow Setting
+    private Vector3 baseOffset = new Vector3(0, 0, -10);
+    private Vector3 minBoundary = new Vector3(-2f, 0f, 0f);
+    private Vector3 maxBoundary = new Vector3(2f, 0f, 0f);
+    
+    private Vector3 dynamicOffset;
 
+    private float upwardOffset = 2f;
+    private float downwardOffset = -2f;
+    private float velFollThreshold = 1f;
 
-    [SerializeField] private float damp = 10;
+    private float followSpeed = 5f;
+    private float offsetSmooth = 2f;
+
+    private float damp = 10;
+
+    #endregion
+
+    #region Camera zoom Setting
+    private float baseSize = 5f;       
+    private float maxSize = 6.5f;        
+    private float targetSize;
+    private float zoomSpeed = 3f;      
+    private float velZoomThreshold = 5f;
+
+    #endregion
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        targetRb = target.GetComponent<Rigidbody2D>();
+        cam = GetComponent<Camera>();
+        
+        dynamicOffset = baseOffset;
+        targetSize = baseSize;
     }
 
+    /// <summary>
+    /// 속도에 따른 줌인 정도 결정
+    /// </summary>
     void LateUpdate()
     {
-        Vector3 dest = target.position + offset;
+        ZoomUpdate();
 
-        if (target.position.y > minBoundary.y)
+        Vector3 targetPos = target.position + dynamicOffset;
+
+        if (targetPos.y > minBoundary.y)
         {
-            minBoundary.y = target.position.y;
+            minBoundary.y = targetPos.y;
         }
 
         maxBoundary.y = target.position.y + 10f;
 
-        Vector3 smoothPos = Vector3.Lerp(transform.position, dest, damp * Time.deltaTime);
+        Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, damp * Time.deltaTime);
 
         smoothPos.x = Mathf.Clamp(smoothPos.x, minBoundary.x, maxBoundary.x);
-        smoothPos.y = Mathf.Clamp(smoothPos.y, minBoundary.y, maxBoundary.y);
+        smoothPos.y = Mathf.Clamp(smoothPos.y, minBoundary.y + dynamicOffset.y, maxBoundary.y);
 
         transform.position = smoothPos;
     }
+
+    private void ZoomUpdate()
+    {
+        float velY = targetRb.linearVelocity.y;
+
+        if (velY > velZoomThreshold)
+        {
+            targetSize = maxSize;
+        }
+        else if (velY < -velZoomThreshold)
+        {
+            targetSize = baseSize;
+        }
+
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, zoomSpeed * Time.deltaTime);
+    }
+
+    /// <summary>
+    /// 카메라 속도에 따른 팔로우 높이 조절
+    /// <summary>
+    /*void LateUpdate()
+    {
+        OffsetUpdate();
+
+        Vector3 targetPos = target.position + dynamicOffset;
+
+        if (targetPos.y > minBoundary.y)
+        {
+            minBoundary.y = targetPos.y;
+        }
+
+        maxBoundary.y = target.position.y + 10f;
+
+        Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, damp * Time.deltaTime);
+
+        smoothPos.x = Mathf.Clamp(smoothPos.x, minBoundary.x, maxBoundary.x);
+        smoothPos.y = Mathf.Clamp(smoothPos.y, minBoundary.y + dynamicOffset.y, maxBoundary.y);
+
+        transform.position = smoothPos;
+    }
+    
+    private void OffsetUpdate()
+    {
+        float velY = targetRb.linearVelocity.y;
+
+        float targetOffsetY = baseOffset.y;
+
+        if (velY > velocityThreshold)
+        {
+            targetOffsetY = upwardOffset;
+        }
+        else if (velY < -velocityThreshold)
+        {
+            targetOffsetY = downwardOffset;
+        }
+
+            // 위아래 이동 시 부드럽게 offset 변경
+        dynamicOffset.y = Mathf.Lerp(dynamicOffset.y, targetOffsetY, offsetSmooth * Time.deltaTime);
+    }*/
 }
