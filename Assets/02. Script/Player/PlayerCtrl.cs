@@ -26,7 +26,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         Vector3 velocity = inputDir * playerForce;
 
-        //Áß·Â¿¡ ÀÇÇÑ force ÃÊ±âÈ­
+        //ï¿½ß·Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ force ï¿½Ê±ï¿½È­
         playerRb.linearVelocity = Vector3.zero;
 
         playerRb.AddForceX(velocity.x * 0.5f, ForceMode2D.Impulse);

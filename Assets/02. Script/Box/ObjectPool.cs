@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// ¿ÀºêÁ§Æ® Ç® °ü¸® Å¬·¡½º
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ç® ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool Instance; // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+    public static ObjectPool Instance; // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½
 
-    [SerializeField] private GameObject blockPrefab; // »ý¼ºÇÒ ºí·Ï ÇÁ¸®ÆÕ
-    private Queue<Block> poolingObjectQueue = new Queue<Block>(); // ºí·ÏÀ» ¼ø¼­´ë·Î °ü¸®ÇÏ±â À§ÇÑ Queue
+    [SerializeField] private GameObject blockPrefab; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Queue<Block> poolingObjectQueue = new Queue<Block>(); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ Queue
 
-    public int ActiveBlockCount { get; private set; } // È°¼ºÈ­µÈ ºí·Ï °³¼ö
+    public int ActiveBlockCount { get; private set; } // È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private void Awake()
     {
@@ -20,53 +20,53 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        Init(10);
+        Init(100);
     }
 
-    private void Init(int initCount) // ÃÊ±â ¼³Á¤
+    private void Init(int initCount) // ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        for (int i = 0; i < initCount; i++) // initCount(10)±îÁö ¹Ýº¹
+        for (int i = 0; i < initCount; i++) // initCount(10)ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
         {
-            poolingObjectQueue.Enqueue(CreateBlock()); // Å¥¿¡ »ý¼ºµÈ ºí·ÏÀ» ³ÖÀ½
+            poolingObjectQueue.Enqueue(CreateBlock()); // Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 
-    private Block CreateBlock() // ºí·Ï »ý¼º ·ÎÁ÷
+    private Block CreateBlock() // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        var newObj = Instantiate(blockPrefab).GetComponent<Block>(); // ºí·Ï »ý¼º ÈÄ, Block ÄÄÆ÷³ÍÆ® °¡Á®¿È
-        newObj.gameObject.SetActive(false); // ¹Ì¸® °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ºñÈ°¼ºÈ­ ½ÃÄÑµÒ
-        newObj.transform.SetParent(transform); // ºí·Ï ¿ÀºêÁ§Æ®ÀÇ ºÎ¸ð ¿ÀºêÁ§Æ® ÁöÁ¤
+        var newObj = Instantiate(blockPrefab).GetComponent<Block>(); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, Block ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        newObj.gameObject.SetActive(false); // ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Ñµï¿½
+        newObj.transform.SetParent(transform); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
         return newObj;
     }
 
-    public static Block GetObject() // ºí·Ï »ç¿ë ·ÎÁ÷
+    public static Block GetObject() // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        Instance.ActiveBlockCount++; // Ä«¿îÆ® Áõ°¡(È°¼ºÈ­)
+        Instance.ActiveBlockCount++; // Ä«ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½(È°ï¿½ï¿½È­)
 
-        if (Instance.poolingObjectQueue.Count > 0) // Å¥¿¡ ºí·ÏÀÌ 1°³¶óµµ µé¾î°¡ÀÖ´Ù¸é
+        if (Instance.poolingObjectQueue.Count > 0) // Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½Ö´Ù¸ï¿½
         {
-            var obj = Instance.poolingObjectQueue.Dequeue(); // Å¥¿¡¼­ ²¨³¿
-            obj.transform.SetParent(Instance.transform); // ºÎ¸ð ¿ÀºêÁ§Æ® ÁöÁ¤
-            obj.gameObject.SetActive(true); // ºí·Ï ¿ÀºêÁ§Æ® È°¼ºÈ­
+            var obj = Instance.poolingObjectQueue.Dequeue(); // Å¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            obj.transform.SetParent(Instance.transform); // ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+            obj.gameObject.SetActive(true); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® È°ï¿½ï¿½È­
 
             return obj;
         }
-        else // Å¥ ¾È¿¡ 1°³µµ ¾ø´Ù¸é
+        else // Å¥ ï¿½È¿ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
         {
-            var newObj = Instance.CreateBlock(); // ºí·Ï »ý¼º
-            newObj.gameObject.SetActive(true); // ºí·Ï ¿ÀºêÁ§Æ® È°¼ºÈ­
-            newObj.transform.SetParent(Instance.transform); // ºÎ¸ð ¿ÀºêÁ§Æ® ÁöÁ¤
+            var newObj = Instance.CreateBlock(); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            newObj.gameObject.SetActive(true); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® È°ï¿½ï¿½È­
+            newObj.transform.SetParent(Instance.transform); // ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
             return newObj;
         }
     }
 
-    public void ReturnObject(Block block) // ºí·Ï ¹ÝÈ¯ ·ÎÁ÷ ( ºÎ½¤Á³À» ¶§ )
+    public void ReturnObject(Block block) // ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½ ( ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ )
     {
         block.gameObject.SetActive(false);
         block.transform.SetParent(Instance.transform);
         poolingObjectQueue.Enqueue(block);
-        ActiveBlockCount--; // Ä«¿îÆ® Â÷°¨ (ºñÈ°¼ºÈ­)
+        ActiveBlockCount--; // Ä«ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½È°ï¿½ï¿½È­)
     }
 }
