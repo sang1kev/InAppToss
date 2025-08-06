@@ -12,32 +12,31 @@ public class PlayerCtrl : MonoBehaviour
 
     [SerializeField] private float playerForce = 1f;
 
-    public bool isGameStart = false;
-    private bool isDashAvail = false;
+    public bool ISDashAvail { get;  private set; }
 
     void Start()
     {
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         groundAnim = GameObject.Find("Ground").GetComponent<Animator>();
+        ISDashAvail = false;
     }
 
     private void Dash()
     {
         Vector3 velocity = inputDir * playerForce;
 
-        //�߷¿� ���� force �ʱ�ȭ
         playerRb.linearVelocity = Vector3.zero;
 
         playerRb.AddForceX(velocity.x * 0.5f, ForceMode2D.Impulse);
         playerRb.AddForceY(velocity.y, ForceMode2D.Impulse);
 
-        isDashAvail = false;
+        ISDashAvail = false;
     }
 
     public void InputJoyStick(float x, float y)
     {
-        if (!isDashAvail)
+        if (!ISDashAvail)
         {
             return;
         }
@@ -49,7 +48,7 @@ public class PlayerCtrl : MonoBehaviour
 
         playerAnim.SetTrigger("Dash");
 
-        if (isGameStart && inputDir.x != 0)
+        if (inputDir.x != 0)
         {
             int isXPositive = inputDir.x > 0 ? 1 : -1;
             transform.localScale = new Vector3(isXPositive, 1, 1);
@@ -62,7 +61,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            isDashAvail = true;
+            ISDashAvail = true;
         }
         if (other.gameObject.CompareTag("Dead Zone"))
         {
@@ -74,7 +73,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            isDashAvail = false;
+            ISDashAvail = false;
             StartCoroutine(GroundCollapse());
         }
     }
@@ -91,9 +90,9 @@ public class PlayerCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Box") && !isDashAvail)
+        if (other.gameObject.CompareTag("Box") && !ISDashAvail)
         {
-            isDashAvail = true;
+            ISDashAvail = true;
             inputDir = Vector3.zero;
             playerRb.AddForce(Vector3.zero);
             playerAnim.SetTrigger("AttWorked");

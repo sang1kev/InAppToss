@@ -5,14 +5,14 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private Transform player; // Player Transform 참조
+    [SerializeField] private Transform player; 
     
     private int currScore;
     private int maxScore;
     
     private float currHeight;
     private float maxHeight;
-    private int heightScoreMultiplier = 1; // 점수 변환 비율
+    private int heightScoreMultiplier = 1; 
 
     private void Update()
     {
@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
     {
         currHeight = player.position.y;
         currScore = Mathf.FloorToInt(currHeight * heightScoreMultiplier);
-        currScore = Mathf.Max(0, currScore); // 음수 방지
+        currScore = Mathf.Max(0, currScore); 
 
         if (currScore >= maxScore)
         {

@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// ������Ʈ Ǯ ���� Ŭ����
-/// </summary>
+
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool Instance; // �̱��� �ν��Ͻ�
+    public static ObjectPool Instance; 
 
-    [SerializeField] private GameObject blockPrefab; // ������ ��� ������
-    private Queue<Block> poolingObjectQueue = new Queue<Block>(); // ����� ������� �����ϱ� ���� Queue
+    [SerializeField] private GameObject blockPrefab; 
+    private Queue<Block> poolingObjectQueue = new Queue<Block>(); 
 
-    public int ActiveBlockCount { get; private set; } // Ȱ��ȭ�� ��� ����
+    public int ActiveBlockCount { get; private set; } 
 
     private void Awake()
     {
@@ -23,50 +21,50 @@ public class ObjectPool : MonoBehaviour
         Init(100);
     }
 
-    private void Init(int initCount) // �ʱ� ����
+    private void Init(int initCount) 
     {
-        for (int i = 0; i < initCount; i++) // initCount(10)���� �ݺ�
+        for (int i = 0; i < initCount; i++) 
         {
-            poolingObjectQueue.Enqueue(CreateBlock()); // ť�� ������ ����� ����
+            poolingObjectQueue.Enqueue(CreateBlock()); 
         }
     }
 
-    private Block CreateBlock() // ��� ���� ����
+    private Block CreateBlock() 
     {
-        var newObj = Instantiate(blockPrefab).GetComponent<Block>(); // ��� ���� ��, Block ������Ʈ ������
-        newObj.gameObject.SetActive(false); // �̸� ���� ������Ʈ�� ��Ȱ��ȭ ���ѵ�
-        newObj.transform.SetParent(transform); // ��� ������Ʈ�� �θ� ������Ʈ ����
+        var newObj = Instantiate(blockPrefab).GetComponent<Block>(); 
+        newObj.gameObject.SetActive(false); 
+        newObj.transform.SetParent(transform); 
 
         return newObj;
     }
 
-    public static Block GetObject() // ��� ��� ����
+    public static Block GetObject() 
     {
-        Instance.ActiveBlockCount++; // ī��Ʈ ����(Ȱ��ȭ)
+        Instance.ActiveBlockCount++; 
 
-        if (Instance.poolingObjectQueue.Count > 0) // ť�� ����� 1���� ���ִٸ�
+        if (Instance.poolingObjectQueue.Count > 0) 
         {
-            var obj = Instance.poolingObjectQueue.Dequeue(); // ť���� ����
-            obj.transform.SetParent(Instance.transform); // �θ� ������Ʈ ����
-            obj.gameObject.SetActive(true); // ��� ������Ʈ Ȱ��ȭ
+            var obj = Instance.poolingObjectQueue.Dequeue(); 
+            obj.transform.SetParent(Instance.transform); 
+            obj.gameObject.SetActive(true); 
 
             return obj;
         }
-        else // ť �ȿ� 1���� ���ٸ�
+        else 
         {
-            var newObj = Instance.CreateBlock(); // ��� ����
-            newObj.gameObject.SetActive(true); // ��� ������Ʈ Ȱ��ȭ
-            newObj.transform.SetParent(Instance.transform); // �θ� ������Ʈ ����
+            var newObj = Instance.CreateBlock(); 
+            newObj.gameObject.SetActive(true); 
+            newObj.transform.SetParent(Instance.transform); 
 
             return newObj;
         }
     }
 
-    public void ReturnObject(Block block) // ��� ��ȯ ���� ( �ν����� �� )
+    public void ReturnObject(Block block)
     {
         block.gameObject.SetActive(false);
         block.transform.SetParent(Instance.transform);
         poolingObjectQueue.Enqueue(block);
-        ActiveBlockCount--; // ī��Ʈ ���� (��Ȱ��ȭ)
+        ActiveBlockCount--; 
     }
 }

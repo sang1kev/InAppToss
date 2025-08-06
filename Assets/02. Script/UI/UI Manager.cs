@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     private GameObject startSet;
     private GameObject inGameSet;
+    private GameObject joyStickUI;
+    private Button startButton;
     
     private Animator groundAnim;
     
@@ -30,12 +33,15 @@ public class UIManager : MonoBehaviour
         
         startSet = GameObject.Find("Start Set");
         inGameSet = GameObject.Find("InGame");
+        joyStickUI = GameObject.Find("JoyStick");
         groundAnim = GameObject.Find("Ground").GetComponent<Animator>();
+        startButton = GameObject.Find("Start Button").GetComponent<Button>();
         
         IsGameStarted = false;
         groundAnim.gameObject.SetActive(true);
         startSet.SetActive(true);
         inGameSet.SetActive(false);
+        joyStickUI.SetActive(false);
     }
     
     void Update()
@@ -43,35 +49,32 @@ public class UIManager : MonoBehaviour
         if (IsGameStarted) 
             return;
 
-        // 모바???�치 체크
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            StartCoroutine(StartGame());
-        }
+        startButton.onClick.AddListener(StartPhase);
+    }
 
-        // PC ?�스?�용 마우???�릭 체크
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(StartGame());
-        }
+    void StartPhase()
+    {
+        StartCoroutine(StartGame());
     }
 
     IEnumerator StartGame()
     {
         IsGameStarted = true;
+
     
         startSet.SetActive(false);
         inGameSet.SetActive(true);
         
         float startTime = 3f;
 
-        // 3�?카운?�다??
         while (startTime > 0f)
         {
             noticeText.text = Mathf.Ceil(startTime).ToString();
             startTime -= Time.deltaTime;
             yield return null;
         }
+
+        joyStickUI.SetActive(true);
 
         noticeText.text = "";
     }

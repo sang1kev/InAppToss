@@ -21,7 +21,7 @@ public class Block : MonoBehaviour
         MoveBlock();
     }
 
-    void MoveBlock() // ���?�̵� �Լ�
+    void MoveBlock()
     {
         transform.position += Vector3.down * BlockManager.moveSpeed * Time.deltaTime;
     }

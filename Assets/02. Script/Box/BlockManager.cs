@@ -8,11 +8,9 @@ public class BlockManager : MonoBehaviour
 
     private PlayerCtrl playerCtrl;
     
-    [Header("�̵� �ӵ�"), Space(5)]
     public static float moveSpeed = 1.4f;
     private float currentTime;
 
-    [Header("���� �ý���"), Space(5)]
     [SerializeField] private float levelUpTime = 20f;
     [SerializeField] private float speedAcceleration = 0.5f;
     [SerializeField] private int currentLevel = 1;
@@ -87,10 +85,8 @@ public class BlockManager : MonoBehaviour
             	continue;
         	}
 
-        	// 블록 생성 로직
         	Block newBlock = ObjectPool.GetObject();
         
-        	// X 좌표는 랜덤, Y 좌표는 플레이어 기준 +10
         	float ranPos = Random.Range(-4f, 4f);
             float yPos = playerCtrl.transform.position.y + 10f;
 
