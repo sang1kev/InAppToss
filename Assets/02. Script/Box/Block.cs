@@ -15,7 +15,7 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance != null && !GameManager.Instance.IsGameStarted) 
+        if (UIManager.Instance != null && !UIManager.Instance.IsGameStarted) 
             return;
         
         MoveBlock();
@@ -33,7 +33,7 @@ public class Block : MonoBehaviour
             StartCoroutine(BrokeCoroutine());
         }
 
-        if (other.CompareTag("Dead Zone"))
+        if (other.CompareTag("DeadZone"))
         {
             blockAnim.SetBool("isBroke", false);
             ObjectPool.Instance.ReturnObject(this);

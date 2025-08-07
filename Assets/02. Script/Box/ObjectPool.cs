@@ -7,7 +7,9 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool Instance; 
 
     [SerializeField] private GameObject blockPrefab; 
-    private Queue<Block> poolingObjectQueue = new Queue<Block>(); 
+    private Queue<Block> poolingObjectQueue = new Queue<Block>();
+
+    [SerializeField] private int boxNum = 100;
 
     public int ActiveBlockCount { get; private set; } 
 
@@ -18,7 +20,7 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        Init(100);
+        Init(boxNum);
     }
 
     private void Init(int initCount) 

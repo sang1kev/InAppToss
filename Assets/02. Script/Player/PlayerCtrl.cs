@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    private GameManager gameManager;
+    [SerializeField] private UIManager gameManager;
 
     private Rigidbody2D playerRb;
     private Animator playerAnim;
-    private Animator groundAnim;
+    [SerializeField] private Animator groundAnim;
 
     private Vector3 inputDir;
 
     [SerializeField] private float playerForce = 1f;
 
     public bool ISDashAvail { get;  private set; }
+    public bool ISDead { get; private set; }
 
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
-        groundAnim = GameObject.Find("Ground").GetComponent<Animator>();
         ISDashAvail = false;
+        ISDead = false;
     }
 
     private void Dash()
@@ -66,8 +66,9 @@ public class PlayerCtrl : MonoBehaviour
         {
             ISDashAvail = true;
         }
-        if (other.gameObject.CompareTag("Dead Zone"))
+        if (other.gameObject.CompareTag("DeadZone"))
         {
+            ISDead = true;
             gameObject.SetActive(false);
         }
     }
