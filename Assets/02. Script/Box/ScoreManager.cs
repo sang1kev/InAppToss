@@ -5,14 +5,20 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private Transform player; 
-    
-    private int currScore;
-    private int maxScore;
+    [SerializeField] private Transform player;
+
+    public int currScore { get; private set; }
+    public int maxScore { get; private set; }
     
     private float currHeight;
     private float maxHeight;
-    private int heightScoreMultiplier = 1; 
+    private int heightScoreMultiplier = 1;
+
+    private void Start()
+    {
+        currScore = 0;
+        maxScore = PlayerPrefs.GetInt("MaxScore", 0);
+    }
 
     private void Update()
     {
@@ -21,19 +27,29 @@ public class ScoreManager : MonoBehaviour
         
         UpdateScore();
     }
-
+    
     void UpdateScore()
     {
-        currHeight = player.position.y;
-        currScore = Mathf.FloorToInt(currHeight * heightScoreMultiplier);
-        currScore = Mathf.Max(0, currScore); 
-
-        if (currScore >= maxScore)
-        {
-            maxScore = currScore;
-            PlayerPrefs.SetInt("MaxScore", currScore);
-        }
+        float currHeight = player.position.y;
         
-        scoreText.text = currScore.ToString() + " m";
+        if (currHeight > maxHeight)
+        {
+            maxHeight = currHeight;
+
+            currScore = Mathf.FloorToInt(maxHeight * heightScoreMultiplier);
+            currScore = Mathf.Max(0, currScore);
+            
+            if (currScore > maxScore)
+            {
+                maxScore = currScore;
+                PlayerPrefs.SetInt("MaxScore", maxScore);
+            }
+        }
+    }
+    
+    public void ResetScore()
+    {
+        currScore = 0;
+        maxHeight = 0f;
     }
 }

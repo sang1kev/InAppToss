@@ -13,6 +13,7 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] private float playerForce = 1f;
 
     public bool ISDashAvail { get;  private set; }
+    public bool isDead;
 
     void Start()
     {
@@ -36,7 +37,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void InputJoyStick(float x, float y)
     {
-        if (!ISDashAvail)
+        if (!ISDashAvail || isDead)
         {
             return;
         }
@@ -66,6 +67,7 @@ public class PlayerCtrl : MonoBehaviour
         if (other.gameObject.CompareTag("Dead Zone"))
         {
             gameObject.SetActive(false);
+            isDead = true;
         }
     }
 

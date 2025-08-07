@@ -33,7 +33,7 @@ public class CameraFollow : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼Óµµ¿¡ µû¸¥ ÁÜÀÎ Á¤µµ °áÁ¤
+    /// ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     void LateUpdate()
     {

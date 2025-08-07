@@ -7,11 +7,25 @@
     <list default="true" id="920e1525-3f91-4d60-aa1f-cb303b2ad451" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InAppToss/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InAppToss/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Scenes/Player Test Scene.Ui.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Scenes/Player Test Scene.Ui.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Box/BlockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Box/BlockManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Box/ObjectPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Box/ObjectPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Box/ScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Box/ScoreManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Follow System/CameraFollow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Follow System/CameraFollow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Script/Player/PlayerCtrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Player/PlayerCtrl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Script/UI/UI Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/UI/UI Manager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05. Animations/Text/Title.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05. Animations/Text/Title/FadeIn.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05. Animations/Text/Title/FadeIn.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05. Animations/Text/Title/Move.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05. Animations/Text/Title/Move.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05. Animations/Text/Title/[Text] Title.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05. Animations/Text/Title/[Text] Title.controller.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/99. Resources/Abaddon_Fonts_v1.2/Abaddon Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/99. Resources/Abaddon_Fonts_v1.2/Abaddon Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +37,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/02. Script/Box/Block.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02. Script/Game System/Game_Init.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -37,7 +52,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Create-Block-function&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PlayTest&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -116,6 +131,8 @@
       <workItem from="1753772910072" duration="1462000" />
       <workItem from="1754137143801" duration="3451000" />
       <workItem from="1754262344855" duration="1098000" />
+      <workItem from="1754487218900" duration="1543000" />
+      <workItem from="1754525674392" duration="9931000" />
     </task>
     <servers />
   </component>
