@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private SoundManager soundManager;
     private PlayerCtrl player;
 
     [SerializeField] private TextMeshProUGUI inGame_noticeText;
@@ -76,15 +77,13 @@ public class UIManager : MonoBehaviour
     {
         Init(true, false, true, false, false);
 
-        startTime = 3f;
-
-        while (startTime > 0f)
+        for (int i = 0; i < startTime; i++)
         {
-            inGame_noticeText.text = Mathf.Ceil(startTime).ToString();
-            startTime -= Time.deltaTime;
-            yield return null;
+            inGame_noticeText.text = Mathf.Ceil(startTime - i).ToString();
+            soundManager.EffectSoundPlay("Number");
+            yield return new WaitForSeconds(1f);
         }
-
+        
         joyStickUI.SetActive(true);
 
         inGame_noticeText.text = "";

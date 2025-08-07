@@ -2036,6 +2036,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BlueStoneUI_SpriteSheet_87
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 396
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964ece4ea8178af4fa245f193dfcfc64
+      internalID: 385568031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlueStoneUI_SpriteSheet_88
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 396
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c89dcbe9704b24bbb24836382ad885
+      internalID: -589827748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -2136,6 +2180,8 @@ TextureImporter:
       BlueStoneUI_SpriteSheet_84: 1900492203
       BlueStoneUI_SpriteSheet_85: -174375611
       BlueStoneUI_SpriteSheet_86: -677929600
+      BlueStoneUI_SpriteSheet_87: 385568031
+      BlueStoneUI_SpriteSheet_88: -589827748
       BlueStoneUI_SpriteSheet_9: 2105309641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

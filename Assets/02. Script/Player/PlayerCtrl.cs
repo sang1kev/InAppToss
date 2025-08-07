@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    [SerializeField] private UIManager gameManager;
+    [SerializeField] private SoundManager soundManager;
 
     private Rigidbody2D playerRb;
     private Animator playerAnim;
-    [SerializeField] private Animator groundAnim;
 
     private Vector3 inputDir;
 
     [SerializeField] private float playerForce = 1f;
 
     public bool ISDashAvail { get;  private set; }
+    public bool DidPlayerExit { get;  private set; }
     public bool ISDead { get; private set; }
 
     void Start()
@@ -22,6 +22,7 @@ public class PlayerCtrl : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         ISDashAvail = false;
+        DidPlayerExit = false;
         ISDead = false;
     }
 
@@ -50,6 +51,7 @@ public class PlayerCtrl : MonoBehaviour
         inputDir = new Vector3(x, y, 0);
 
         playerAnim.SetTrigger("Dash");
+        soundManager.EffectSoundPlay("Dash");
 
         if (inputDir.x != 0)
         {
@@ -70,30 +72,18 @@ public class PlayerCtrl : MonoBehaviour
         {
             ISDead = true;
             gameObject.SetActive(false);
+            soundManager.EffectSoundPlay("GameOver");
+            soundManager.BGMSoundPlay("GameOverBGM");
         }
     }
 
     void OnCollisionExit2D(Collision2D other)
     {
-        if (!gameManager.IsGameStarted)
-        {
-            return;
-        }
         if (other.gameObject.CompareTag("Ground"))
         {
             ISDashAvail = false;
-            StartCoroutine(GroundCollapse());
+            DidPlayerExit = true;
         }
-    }
-
-    IEnumerator GroundCollapse()
-    {
-        yield return new WaitForSeconds(2.25f);
-
-        groundAnim.SetTrigger("Broke");
-
-        yield return new WaitForSeconds(2.25f);
-        groundAnim.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)

@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 maxBoundary = new Vector3(2f, 0f, 0f);
 
     private float damp = 10;
+    private float camDamp = 5;
 
     #endregion
 
@@ -19,8 +20,8 @@ public class CameraFollow : MonoBehaviour
     private float baseSize = 5f;       
     private float maxSize = 6.5f;        
     private float targetSize;
-    private float zoomSpeed = 3f;      
-    private float velZoomThreshold = 5f;
+    private float zoomSpeed = 1f;      
+    private float velThreshold = 5f;
 
     #endregion
 
@@ -59,15 +60,20 @@ public class CameraFollow : MonoBehaviour
     private void ZoomUpdate()
     {
         float velY = targetRb.linearVelocity.y;
+        float zoomOffset = 0f;
 
-        if (velY > velZoomThreshold)
+        if (velY > velThreshold)
         {
             targetSize = maxSize;
+            zoomOffset = 1f;
         }
-        else if (velY < -velZoomThreshold)
+        else if (velY < -velThreshold)
         {
             targetSize = baseSize;
+            zoomOffset = -2f;
         }
+
+        baseOffset.y = Mathf.Lerp(baseOffset.y, zoomOffset, camDamp * Time.deltaTime);
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, zoomSpeed * Time.deltaTime);
     }

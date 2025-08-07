@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    [SerializeField] private SoundManager soundManager;
+
     private Animator blockAnim;
 
     private void Start()
     {
+        soundManager = FindAnyObjectByType<SoundManager>();
         blockAnim = GetComponent<Animator>();
 
         blockAnim.SetBool("isBroke", false);
@@ -30,6 +33,7 @@ public class Block : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            soundManager.EffectSoundPlay("BlockBreak");
             StartCoroutine(BrokeCoroutine());
         }
 

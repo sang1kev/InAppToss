@@ -23,6 +23,7 @@ public class BackgroundFollow : MonoBehaviour
         if (targetPos.y > minBoundary.y)
         {
             minBoundary.y = targetPos.y;
+            offset.y = -1f;
         }
 
         maxBoundary.y = target.position.y + 10f;
