@@ -3,11 +3,19 @@ using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
-    private enum LevelType { Lv1, Lv2, Lv3, Lv4, Infinity }
+    private enum LevelType
+    {
+        Lv1,
+        Lv2,
+        Lv3,
+        Lv4,
+        Infinity
+    }
+
     [SerializeField] private LevelType e_level = LevelType.Lv1;
 
     private PlayerCtrl playerCtrl;
-    
+
     public static float moveSpeed = 1.4f;
     private float currentTime;
 
@@ -22,15 +30,15 @@ public class BlockManager : MonoBehaviour
     private void Start()
     {
         playerCtrl = FindFirstObjectByType<PlayerCtrl>();
-        
+
         StartCoroutine(CreateBlockLoop());
     }
 
     private void Update()
     {
-        if (UIManager.Instance != null && !UIManager.Instance.IsGameStarted) 
+        if (UIManager.Instance != null && !UIManager.Instance.IsGameStarted)
             return;
-        
+
         currentTime += Time.deltaTime;
 
         if (currentTime >= levelUpTime)
@@ -52,7 +60,7 @@ public class BlockManager : MonoBehaviour
         switch (e_level)
         {
             case LevelType.Lv1:
-                SetLevelSystem(1, 1,15f, 0.5f);
+                SetLevelSystem(1, 1, 15f, 0.5f);
                 break;
             case LevelType.Lv2:
                 SetLevelSystem(2, 2, 15f, 0.55f);
@@ -79,31 +87,46 @@ public class BlockManager : MonoBehaviour
     }
 
     IEnumerator CreateBlockLoop()
-	{
-    	while (true)
-    	{
-        	if (UIManager.Instance == null || !UIManager.Instance.IsGameStarted)
-        	{
-            	yield return null;
-            	continue;
-        	}
+    {
+        float lastX = float.MinValue;
+        const float minDist = 1.5f;
+        float maxJumpY = playerCtrl.transform.position.y;
 
-        	Block newBlock = ObjectPool.GetObject();
-            
-        	randPos = Random.Range(-3, 4);
-
-            while (randPos == prevPos)
+        while (true)
+        {
+            if (UIManager.Instance == null || !UIManager.Instance.IsGameStarted)
             {
-                randPos = Random.Range(-3, 4);
+                yield return null;
+                continue;
             }
+            
+            float x;
+            int tries = 10;
+            do
+            {
+                x = Random.Range(-4f, 4f);
+            } while (Mathf.Abs(x - lastX) < minDist && --tries > 0);
 
-            float yPos = playerCtrl.transform.position.y + 13f;
+            lastX = x;
+            
+            float currY = playerCtrl.transform.position.y;
+            
+            if (playerCtrl.ISDashAvail)
+            {
+                if (currY > maxJumpY)
+                    maxJumpY = currY;
+            }
+            else
+            {
+                maxJumpY = currY;
+            }
+            
+            float blockY = playerCtrl.ISDashAvail ? maxJumpY + 13f : currY + 10f;
+            
+            Block block = ObjectPool.GetObject();
+            block.transform.position = new Vector3(x, blockY, 0f);
 
-        	newBlock.transform.position = new Vector3(randPos, yPos, 0f);
-
-            prevPos = randPos;
-
-            yield return new WaitForSeconds(0.3f * spawnTime);
-    	}
-	}
+            yield return new WaitForSeconds(Random.Range(0.2f, 0.3f));
+        }
+    }
 }
