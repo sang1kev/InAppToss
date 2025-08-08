@@ -100,11 +100,11 @@ public class BlockManager : MonoBehaviour
                 continue;
             }
             
-            float x;
+            int x;
             int tries = 10;
             do
             {
-                x = Random.Range(-4f, 4f);
+                x = Random.Range(-4, 5);
             } while (Mathf.Abs(x - lastX) < minDist && --tries > 0);
 
             lastX = x;

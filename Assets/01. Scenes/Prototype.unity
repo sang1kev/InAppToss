@@ -1008,7 +1008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 200981053}
   - component: {fileID: 200981052}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 256893554}
   - component: {fileID: 256893553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1663,7 +1663,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1757,7 +1757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317575033}
   - component: {fileID: 317575032}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_24 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2288,7 +2288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452523136}
   - component: {fileID: 452523135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_23 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2655,7 +2655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 485425493}
   - component: {fileID: 485425492}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2884,7 +2884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 520514833}
   - component: {fileID: 520514832}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2971,7 +2971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 521877449}
   - component: {fileID: 521877448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3449,7 +3449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 621648584}
   - component: {fileID: 621648583}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3920,7 +3920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 675148733}
   - component: {fileID: 675148732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_23 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4082,7 +4082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 697849322}
   - component: {fileID: 697849321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4569,7 +4569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 883705741}
   - component: {fileID: 883705740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4656,7 +4656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 941134945}
   - component: {fileID: 941134944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_24 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4986,7 +4986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1000762898}
   - component: {fileID: 1000762897}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5207,7 +5207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1059308625}
   - component: {fileID: 1059308624}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5294,7 +5294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071222231}
   - component: {fileID: 1071222230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5421,7 +5421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1106458552}
   - component: {fileID: 1106458551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5590,7 +5590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139114001}
   - component: {fileID: 1139114000}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5677,7 +5677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175561316}
   - component: {fileID: 1175561315}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5900,7 +5900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1204586475}
   - component: {fileID: 1204586474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_23 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6271,7 +6271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267542632}
   - component: {fileID: 1267542631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6358,7 +6358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268236111}
   - component: {fileID: 1268236110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6675,7 +6675,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6784,7 +6784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1340836338}
   - component: {fileID: 1340836337}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_24 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6902,7 +6902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1345139014}
   - component: {fileID: 1345139013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7066,7 +7066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390672061}
   - component: {fileID: 1390672060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7289,7 +7289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1402354224}
   - component: {fileID: 1402354223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7376,7 +7376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417671000}
   - component: {fileID: 1417670999}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7500,7 +7500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1425748113}
   - component: {fileID: 1425748112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7811,7 +7811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1451838588}
   - component: {fileID: 1451838587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8507,7 +8507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1522391579}
   - component: {fileID: 1522391578}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8643,7 +8643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534434852}
   - component: {fileID: 1534434851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_23 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8911,7 +8911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1615199856}
   - component: {fileID: 1615199855}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8998,7 +8998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1616085629}
   - component: {fileID: 1616085628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9222,7 +9222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1637440529}
   - component: {fileID: 1637440528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9789,7 +9789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1733249039}
   - component: {fileID: 1733249038}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_16 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10312,7 +10312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1824731867}
   - component: {fileID: 1824731866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10399,7 +10399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1899223741}
   - component: {fileID: 1899223740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10626,7 +10626,7 @@ GameObject:
   - component: {fileID: 1906245697}
   - component: {fileID: 1906245698}
   - component: {fileID: 1906245699}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -10767,7 +10767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80c260266b03f44ab58263ad354fc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 505323878}
   playerCtrl: {fileID: 1803887895}
 --- !u!1 &1916810117
 GameObject:
@@ -10892,7 +10891,7 @@ GameObject:
   - component: {fileID: 1939052440}
   - component: {fileID: 1939052443}
   - component: {fileID: 1939052444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DeadZone Collider
   m_TagString: DeadZone
   m_Icon: {fileID: 0}
@@ -11027,7 +11026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08af780fc0000b0499b985c88031410f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: -7
+  offset: -5
   minBoundary: 0
   damp: 10
 --- !u!50 &1939052444
@@ -11045,7 +11044,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -11056,7 +11055,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1939977542
 GameObject:
   m_ObjectHideFlags: 0
@@ -11750,7 +11749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2038983767}
   - component: {fileID: 2038983766}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_23 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11837,7 +11836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084696822}
   - component: {fileID: 2084696821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11924,7 +11923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2089516819}
   - component: {fileID: 2089516818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sci-fi-tileset_1 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

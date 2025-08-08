@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private SoundManager soundManager;
     private PlayerCtrl player;
+    private Ground ground;
 
     [SerializeField] private TextMeshProUGUI inGame_noticeText;
     [SerializeField] private TextMeshProUGUI inGame_currScoreText;
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
+        ground = FindFirstObjectByType<Ground>();
 
         Init(false, true, false, false, false);
     }
@@ -52,6 +54,8 @@ public class UIManager : MonoBehaviour
 
         if (player.ISDead)
         {
+            ground.StopAllCoroutines();
+            ground.gameObject.SetActive(false);
             ShowDieUI();
         }
     }
@@ -107,6 +111,8 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         scoreManager.ResetScore();
+        ground.StopAllCoroutines();
+        ground.gameObject.SetActive(true);
         SceneManager.LoadScene(0);
     }
 }

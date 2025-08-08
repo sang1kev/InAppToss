@@ -48,11 +48,14 @@ public class DotLineUI : MonoBehaviour
 
         List<RectTransform> dots = playerCtrl.ISDashAvail ? dotsDash : dotsNoDash;
 
+        List<RectTransform> dotsDis = playerCtrl.ISDashAvail ? dotsNoDash : dotsDash;
+
         for (int i = 0; i < maxDots; i++)
         {
             if (i < activeDots)
             {
                 dots[i].gameObject.SetActive(true);
+                dotsDis[i].gameObject.SetActive(false);
                 Vector3 pos = startScreenPos + direction * (i * dotSpacing);
                 
                 dots[i].position = pos;
@@ -70,7 +73,6 @@ public class DotLineUI : MonoBehaviour
         {
             dot.gameObject.SetActive(false);
         }
-
         foreach (var dot in dotsNoDash)
         {
             dot.gameObject.SetActive(false);
