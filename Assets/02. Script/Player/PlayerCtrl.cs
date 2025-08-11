@@ -83,6 +83,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             ISDashAvail = false;
             DidPlayerExit = true;
+            UIManager.Instance.SetGameStarted(true);
         }
     }
 

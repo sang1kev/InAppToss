@@ -29,11 +29,13 @@ public class UIManager : MonoBehaviour
     private bool hasDieUIShown = false;
     private float startTime = 3f;
 
+    public bool IsGameReady { get; private set; }
     public bool IsGameStarted { get; private set; }
 
     private void Awake()
     {
         Instance = this;
+        IsGameReady = false;
         IsGameStarted = false;
     }
 
@@ -47,9 +49,9 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (!IsGameStarted || player == null || hasDieUIShown)
+        if (!IsGameReady || player == null || hasDieUIShown)
             return;
-
+        
         UpdateText();
 
         if (player.ISDead)
@@ -79,8 +81,9 @@ public class UIManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        Init(true, false, true, false, false);
-
+        Init(false, false, true, false, false);
+        IsGameReady = true;
+        
         for (int i = 0; i < startTime; i++)
         {
             inGame_noticeText.text = Mathf.Ceil(startTime - i).ToString();
@@ -91,6 +94,11 @@ public class UIManager : MonoBehaviour
         joyStickUI.SetActive(true);
 
         inGame_noticeText.text = "";
+    }
+    
+    public void SetGameStarted(bool GameStarted)
+    {
+        IsGameStarted = GameStarted;
     }
 
     private void UpdateText()
