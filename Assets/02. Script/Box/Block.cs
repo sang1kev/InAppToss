@@ -18,7 +18,7 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.Instance != null && !UIManager.Instance.IsGameStarted) 
+        if (UIManager.Instance != null && !UIManager.Instance.IsGameReady) 
             return;
         
         MoveBlock();

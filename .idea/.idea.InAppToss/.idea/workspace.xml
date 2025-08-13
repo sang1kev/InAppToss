@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="920e1525-3f91-4d60-aa1f-cb303b2ad451" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InAppToss/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InAppToss/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Scenes/Prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Scenes/Prototype.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Box/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Box/Block.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Script/Manager/BlockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Manager/BlockManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Manager/UI Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Manager/UI Manager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Player/PlayerCtrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Player/PlayerCtrl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/99. Resources/Abaddon_Fonts_v1.2/Abaddon Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/99. Resources/Abaddon_Fonts_v1.2/Abaddon Bold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,23 +32,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.48f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Unity Hub\6000.0.48f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\Unity Project\InAppToss&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Unity Project\InAppToss" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -57,7 +59,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unity 시작" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.48f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Unity Hub\6000.0.48f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;D:\Unity Project\InAppToss&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Unity Project\InAppToss" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -115,6 +117,7 @@
       <workItem from="1754137143801" duration="3451000" />
       <workItem from="1754262344855" duration="1098000" />
       <workItem from="1754627699625" duration="1989000" />
+      <workItem from="1754887321200" duration="737000" />
     </task>
     <servers />
   </component>

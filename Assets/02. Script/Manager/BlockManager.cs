@@ -16,7 +16,7 @@ public class BlockManager : MonoBehaviour
 
     private PlayerCtrl playerCtrl;
 
-    public static float moveSpeed = 1.4f;
+    public static float moveSpeed = 1.6f;
     private float currentTime;
 
     [SerializeField] private float levelUpTime = 20f;
@@ -33,7 +33,7 @@ public class BlockManager : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.Instance != null && !UIManager.Instance.IsGameStarted)
+        if (UIManager.Instance != null && !UIManager.Instance.IsGameReady)
             return;
 
         currentTime += Time.deltaTime;
@@ -91,7 +91,7 @@ public class BlockManager : MonoBehaviour
 
         while (true)
         {
-            if (UIManager.Instance == null || !UIManager.Instance.IsGameStarted)
+            if (UIManager.Instance == null || !UIManager.Instance.IsGameReady)
             {
                 yield return null;
                 continue;
@@ -123,7 +123,10 @@ public class BlockManager : MonoBehaviour
             Block block = ObjectPool.GetObject();
             block.transform.position = new Vector3(x, blockY, 0f);
 
-            yield return new WaitForSeconds(Random.Range(0.2f, 0.3f));
+            if (UIManager.Instance.IsGameStarted) spawnTime = Random.Range(0.2f, 0.3f);
+            else spawnTime = Random.Range(0.8f, 1.0f);
+            
+            yield return new WaitForSeconds(spawnTime);
         }
     }
 }
