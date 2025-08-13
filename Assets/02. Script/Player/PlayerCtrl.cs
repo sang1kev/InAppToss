@@ -89,7 +89,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Box") && !ISDashAvail)
+        if (other.gameObject.CompareTag("Box"))
         {
             ISDashAvail = true;
             inputDir = Vector3.zero;
