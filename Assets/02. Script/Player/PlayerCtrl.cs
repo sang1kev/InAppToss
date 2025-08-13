@@ -11,6 +11,8 @@ public class PlayerCtrl : MonoBehaviour
 
     private Vector3 inputDir;
 
+    private Vector2 savedVelocity;
+
     [SerializeField] private float playerForce = 1f;
 
     public bool ISDashAvail { get;  private set; }
@@ -96,5 +98,18 @@ public class PlayerCtrl : MonoBehaviour
             playerRb.AddForce(Vector3.zero);
             playerAnim.SetTrigger("AttWorked");
         }
+    }
+
+    public void PausePlayer()
+    {
+        savedVelocity = playerRb.linearVelocity; // 현재 속도 저장
+        playerRb.linearVelocity = Vector2.zero;  // 속도 정지
+        playerRb.simulated = false;
+    }
+
+    public void ResumePlayer()
+    {
+        playerRb.simulated = true;
+        playerRb.linearVelocity = savedVelocity; // 저장한 속도로 복구
     }
 }

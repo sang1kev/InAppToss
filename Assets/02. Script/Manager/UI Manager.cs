@@ -31,12 +31,14 @@ public class UIManager : MonoBehaviour
 
     public bool IsGameReady { get; private set; }
     public bool IsGameStarted { get; private set; }
+    public bool IsGamePaused { get; set; }
 
     private void Awake()
     {
         Instance = this;
         IsGameReady = false;
         IsGameStarted = false;
+        IsGamePaused = false;
     }
 
     void Start()
