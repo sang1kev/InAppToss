@@ -24,9 +24,6 @@ public class BlockManager : MonoBehaviour
     [SerializeField] private int currentLevel = 1;
     [SerializeField] private float spawnTime = 1f;
 
-    private int randPos = 0;
-    private int prevPos = 5;
-
     private void Start()
     {
         playerCtrl = FindFirstObjectByType<PlayerCtrl>();
@@ -90,7 +87,7 @@ public class BlockManager : MonoBehaviour
     {
         float lastX = float.MinValue;
         const float minDist = 1.5f;
-        float maxJumpY = playerCtrl.transform.position.y;
+        float maxJumpY = playerCtrl.transform.position.y + Time.deltaTime;
 
         while (true)
         {

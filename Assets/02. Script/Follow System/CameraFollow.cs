@@ -4,7 +4,7 @@ public class CameraFollow : MonoBehaviour
 {
     private Transform target;
     private Rigidbody2D targetRb;
-    private Camera cam;
+    private UnityEngine.Camera cam;
 
     #region Camera Follow Setting
     private Vector3 baseOffset = new Vector3(0, 0, -10);
@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         targetRb = target.GetComponent<Rigidbody2D>();
-        cam = GetComponent<Camera>();
+        cam = GetComponent<UnityEngine.Camera>();
         targetSize = baseSize;
     }
 

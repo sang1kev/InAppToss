@@ -11,12 +11,12 @@ public class DotLineUI : MonoBehaviour
 
     private List<RectTransform> dotsDash = new List<RectTransform>();
     private List<RectTransform> dotsNoDash = new List<RectTransform>();
-    private Camera mainCam;
+    private UnityEngine.Camera mainCam;
     private PlayerCtrl playerCtrl;
 
     void Start()
     {
-        mainCam = Camera.main;
+        mainCam = UnityEngine.Camera.main;
         playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
 
         // 점 미리 생성

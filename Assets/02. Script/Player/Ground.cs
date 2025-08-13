@@ -20,7 +20,10 @@ public class Ground : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(GroundCollapse());
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(GroundCollapse());
+            }
         }
     }
 

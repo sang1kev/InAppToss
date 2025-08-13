@@ -111,8 +111,8 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         scoreManager.ResetScore();
-        ground.StopAllCoroutines();
         ground.gameObject.SetActive(true);
+        ground.StopAllCoroutines();
         SceneManager.LoadScene(0);
     }
 }

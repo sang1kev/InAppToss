@@ -6,7 +6,6 @@ public class ColliderFollow : MonoBehaviour
 
     [SerializeField] private float offset = -5;
     [SerializeField] private float minBoundary = 0f;
-    [SerializeField] private float damp = 10;
 
     void Start()
     {

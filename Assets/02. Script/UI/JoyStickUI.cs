@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEditor.Experimental.GraphView;
-using Unity.VisualScripting;
 
 public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
@@ -16,6 +14,8 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     private Vector3 startPos, currPos, playerDir;
 
+    private int touchId = -1;
+
     void Start()
     {
         playerCtrl = FindFirstObjectByType<PlayerCtrl>();
@@ -26,6 +26,9 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.pointerId != touchId) 
+            return;
+
         currPos = eventData.position;
         Vector3 dragDir = (currPos - startPos);
     
@@ -41,6 +44,9 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (touchId != -1 && touchId != eventData.pointerId)
+            return;
+        touchId = eventData.pointerId;
         backgroundUI.SetActive(true);
         backgroundUI.transform.position = eventData.position;
         startPos = eventData.position;
@@ -49,6 +55,9 @@ public class JoyStickUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (eventData.pointerId != touchId)
+            return;
+
         Vector3 finalPos = eventData.position;
         Vector3 finalDir = (finalPos - startPos);
 
