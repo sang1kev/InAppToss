@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="920e1525-3f91-4d60-aa1f-cb303b2ad451" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.InAppToss/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InAppToss/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Scenes/Prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Scenes/Prototype.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Box/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Box/Block.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Manager/BlockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Manager/BlockManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Manager/UI Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Manager/UI Manager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Script/Player/PlayerCtrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Script/Player/PlayerCtrl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/99. Resources/Abaddon_Fonts_v1.2/Abaddon Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/99. Resources/Abaddon_Fonts_v1.2/Abaddon Bold SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +18,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/02. Script/Box/Block.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02. Script/Manager/UI Manager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -118,6 +114,7 @@
       <workItem from="1754262344855" duration="1098000" />
       <workItem from="1754627699625" duration="1989000" />
       <workItem from="1754887321200" duration="737000" />
+      <workItem from="1755070189696" duration="204000" />
     </task>
     <servers />
   </component>
