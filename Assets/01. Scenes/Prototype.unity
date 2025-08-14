@@ -1878,7 +1878,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8091,7 +8091,9 @@ MonoBehaviour:
 
     : nathan scott
 
-    : CRAFTFIX.NET'
+    : CRAFTFIX.NET
+
+    : Sean'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c7ec04279d1de5449cc046fad523847, type: 2}
   m_sharedMaterial: {fileID: -3870181391338369409, guid: 3c7ec04279d1de5449cc046fad523847, type: 2}
@@ -9924,7 +9926,9 @@ MonoBehaviour:
 
     Font
 
-    Background'
+    Background
+
+    WebGL'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c7ec04279d1de5449cc046fad523847, type: 2}
   m_sharedMaterial: {fileID: -3870181391338369409, guid: 3c7ec04279d1de5449cc046fad523847, type: 2}
@@ -10803,6 +10807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a6aa46435e5454b90a9a46332f4c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 505323878}
   soundManager: {fileID: 166140020}
   playerForce: 10
 --- !u!1 &1824731865
@@ -11129,6 +11134,7 @@ GameObject:
   - component: {fileID: 1906245697}
   - component: {fileID: 1906245698}
   - component: {fileID: 1906245699}
+  - component: {fileID: 1906245700}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
@@ -11271,6 +11277,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 1803887895}
+--- !u!50 &1906245700
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906245695}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1916810117
 GameObject:
   m_ObjectHideFlags: 0
@@ -11674,6 +11707,42 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: ButtonClick
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 505323878}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: set_IsGamePaused
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1803887895}
+        m_TargetAssemblyTypeName: PlayerCtrl, Assembly-CSharp
+        m_MethodName: ResumePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 19620357}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1939977545
