@@ -18,7 +18,6 @@ public class BackgroundFollow : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        timer = 0;
     }
 
     void LateUpdate()
