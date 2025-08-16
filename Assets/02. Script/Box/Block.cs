@@ -26,7 +26,14 @@ public class Block : MonoBehaviour
 
     void MoveBlock()
     {
-        transform.position += Vector3.down * BlockManager.moveSpeed * Time.deltaTime;
+        if (!UIManager.Instance.IsGamePaused)
+        {
+            transform.position += Vector3.down * BlockManager.moveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            transform.position = transform.position;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

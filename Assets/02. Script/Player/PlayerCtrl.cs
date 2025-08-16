@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    [SerializeField] private UIManager gameManager;
     [SerializeField] private SoundManager soundManager;
 
     private Rigidbody2D playerRb;
     private Animator playerAnim;
 
     private Vector3 inputDir;
+
+    private Vector2 savedVelocity;
 
     [SerializeField] private float playerForce = 1f;
 
@@ -89,12 +92,33 @@ public class PlayerCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Box") && !ISDashAvail)
+        if (other.gameObject.CompareTag("Box"))
         {
             ISDashAvail = true;
             inputDir = Vector3.zero;
             playerRb.AddForce(Vector3.zero);
             playerAnim.SetTrigger("AttWorked");
         }
+    }
+
+    public void PausePlayer()
+    {
+        if (!gameManager.IsGameStarted)
+        {
+            return;
+        }
+        savedVelocity = playerRb.linearVelocity; // 현재 속도 저장
+        playerRb.linearVelocity = Vector2.zero;  // 속도 정지
+        playerRb.simulated = false;
+    }
+
+    public void ResumePlayer()
+    {
+        if (!gameManager.IsGameStarted)
+        {
+            return;
+        }
+        playerRb.simulated = true;
+        playerRb.linearVelocity = savedVelocity; // 저장한 속도로 복구
     }
 }
