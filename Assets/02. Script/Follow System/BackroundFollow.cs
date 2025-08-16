@@ -15,9 +15,6 @@ public class BackgroundFollow : MonoBehaviour
 
     [SerializeField] private float damp = 10f;
 
-    private float colorPercent = 128/255f;
-    private float timer;
-
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
