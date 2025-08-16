@@ -74,6 +74,7 @@ public class PlayerCtrl : MonoBehaviour
         if (other.gameObject.CompareTag("DeadZone"))
         {
             ISDead = true;
+            gameManager.IsGameOver = true;
             gameObject.SetActive(false);
             soundManager.EffectSoundPlay("GameOver");
             soundManager.BGMSoundPlay("GameOverBGM");
@@ -86,7 +87,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             ISDashAvail = false;
             DidPlayerExit = true;
-            UIManager.Instance.SetGameStarted(true);
+            gameManager.SetGameStarted(true);
         }
     }
 

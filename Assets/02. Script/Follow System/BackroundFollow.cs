@@ -1,19 +1,27 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class BackgroundFollow : MonoBehaviour
 {
     private Transform target;
 
+    [SerializeField] private SpriteRenderer[] spriteRenderer;
+
     [SerializeField] private Vector3 offset = new Vector3(0, 1, -10);
 
     [SerializeField] private Vector3 minBoundary = new Vector3(-2f, 0f, 0f);
     [SerializeField] private Vector3 maxBoundary = new Vector3(2f, 0f, 0f);
 
-    [SerializeField] private float damp = 10;
+    [SerializeField] private float damp = 10f;
+
+    private float colorPercent = 128/255f;
+    private float timer;
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        timer = 0;
     }
 
     void LateUpdate()

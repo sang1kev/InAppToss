@@ -27,11 +27,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject joyStickUI;
 
     private bool hasDieUIShown = false;
-    private float startTime = 3f;
+    private float startTime;
 
     public bool IsGameReady { get; private set; }
     public bool IsGameStarted { get; private set; }
     public bool IsGamePaused { get; set; }
+    public bool IsGameOver { get; set; }
+
 
     private void Awake()
     {
@@ -39,12 +41,14 @@ public class UIManager : MonoBehaviour
         IsGameReady = false;
         IsGameStarted = false;
         IsGamePaused = false;
+        IsGameOver = false;
     }
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
         ground = FindFirstObjectByType<Ground>();
+        startTime = 3f;
 
         Init(false, true, false, false, false);
     }

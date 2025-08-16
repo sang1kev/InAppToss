@@ -5,12 +5,14 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     [SerializeField] private SoundManager soundManager;
+    [SerializeField] private UIManager uiManager;
 
     private Animator blockAnim;
 
     private void Start()
     {
         soundManager = FindAnyObjectByType<SoundManager>();
+        uiManager = FindAnyObjectByType<UIManager>();
         blockAnim = GetComponent<Animator>();
 
         blockAnim.SetBool("isBroke", false);
@@ -18,7 +20,7 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.Instance != null && !UIManager.Instance.IsGameReady) 
+        if (uiManager != null && !uiManager.IsGameReady) 
             return;
         
         MoveBlock();
@@ -26,7 +28,7 @@ public class Block : MonoBehaviour
 
     void MoveBlock()
     {
-        if (!UIManager.Instance.IsGamePaused)
+        if (!uiManager.IsGamePaused && !uiManager.IsGameOver)
         {
             transform.position += Vector3.down * BlockManager.moveSpeed * Time.deltaTime;
         }

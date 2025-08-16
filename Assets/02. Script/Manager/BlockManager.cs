@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private PlayerCtrl player;
     private enum LevelType
     {
         Lv1,
@@ -12,28 +14,40 @@ public class BlockManager : MonoBehaviour
         Infinity
     }
 
-    [SerializeField] private LevelType e_level = LevelType.Lv1;
+    [SerializeField] private LevelType e_level;
 
     private PlayerCtrl playerCtrl;
 
-    public static float moveSpeed = 1.6f;
+    public static float moveSpeed;
     private float currentTime;
 
-    [SerializeField] private float levelUpTime = 20f;
-    [SerializeField] private float speedAcceleration = 0.5f;
-    [SerializeField] private int currentLevel = 1;
-    [SerializeField] private float spawnTime = 1f;
+    [SerializeField] private float levelUpTime;
+    [SerializeField] private float speedAcceleration;
+    [SerializeField] private int currentLevel;
+    [SerializeField] private float spawnTime;
+
+    void Awake()
+    {
+        uiManager = FindFirstObjectByType<UIManager>();
+    }
 
     private void Start()
     {
         playerCtrl = FindFirstObjectByType<PlayerCtrl>();
+
+        e_level = LevelType.Lv1;
+        currentLevel = 1;
+        levelUpTime = 20f;
+        speedAcceleration = 0.5f;
+        moveSpeed = 1.6f;
+        spawnTime = 1f;
 
         StartCoroutine(CreateBlockLoop());
     }
 
     private void Update()
     {
-        if (UIManager.Instance != null && !UIManager.Instance.IsGameReady)
+        if (uiManager != null && !uiManager.IsGameReady)
             return;
 
         currentTime += Time.deltaTime;
@@ -87,11 +101,11 @@ public class BlockManager : MonoBehaviour
     {
         float lastX = float.MinValue;
         const float minDist = 1.5f;
-        float maxJumpY = playerCtrl.transform.position.y + Time.deltaTime;
+        float maxJumpY = playerCtrl.DidPlayerExit ? playerCtrl.transform.position.y + Time.deltaTime : playerCtrl.transform.position.y;
 
         while (true)
         {
-            if (UIManager.Instance == null || !UIManager.Instance.IsGameReady)
+            if ((uiManager == null || !uiManager.IsGameReady) && !uiManager.IsGameOver)
             {
                 yield return null;
                 continue;
@@ -123,7 +137,7 @@ public class BlockManager : MonoBehaviour
             Block block = ObjectPool.GetObject();
             block.transform.position = new Vector3(x, blockY, 0f);
 
-            if (UIManager.Instance.IsGameStarted) spawnTime = Random.Range(0.2f, 0.3f);
+            if (uiManager.IsGameStarted) spawnTime = Random.Range(0.2f, 0.3f);
             else spawnTime = Random.Range(0.8f, 1.0f);
             
             yield return new WaitForSeconds(spawnTime);
