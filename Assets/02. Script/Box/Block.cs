@@ -6,6 +6,8 @@ public class Block : MonoBehaviour
 {
     [SerializeField] private SoundManager soundManager;
 
+    [SerializeField]private GameObject[] itemCanvs;
+
     private Animator blockAnim;
 
     private void Start()
@@ -40,12 +42,20 @@ public class Block : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            for (int i = 0; i < itemCanvs.Length; i++)
+            {
+                itemCanvs[i].SetActive(false);
+            }
             soundManager.EffectSoundPlay("BlockBreak");
             StartCoroutine(BrokeCoroutine());
         }
 
         if (other.CompareTag("DeadZone"))
         {
+            for (int i = 0;  i < itemCanvs.Length; i++)
+            {
+                itemCanvs[i].SetActive(false);
+            }
             blockAnim.SetBool("isBroke", false);
             ObjectPool.Instance.ReturnObject(this);
         }
