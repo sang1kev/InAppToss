@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BlockManager : MonoBehaviour
@@ -101,7 +102,9 @@ public class BlockManager : MonoBehaviour
     {
         float lastX = float.MinValue;
         const float minDist = 1.5f;
-        float maxJumpY = playerCtrl.DidPlayerExit ? playerCtrl.transform.position.y + Time.deltaTime : playerCtrl.transform.position.y;
+        float maxJumpY = playerCtrl.DidPlayerExit
+            ? playerCtrl.transform.position.y + Time.deltaTime
+            : playerCtrl.transform.position.y;
 
         while (true)
         {
@@ -110,7 +113,7 @@ public class BlockManager : MonoBehaviour
                 yield return null;
                 continue;
             }
-            
+
             int x;
             int tries = 10;
             do
@@ -119,9 +122,9 @@ public class BlockManager : MonoBehaviour
             } while (Mathf.Abs(x - lastX) < minDist && --tries > 0);
 
             lastX = x;
-            
+
             float currY = playerCtrl.transform.position.y;
-            
+
             if (playerCtrl.ISDashAvail)
             {
                 if (currY > maxJumpY)
@@ -131,10 +134,32 @@ public class BlockManager : MonoBehaviour
             {
                 maxJumpY = currY;
             }
-            
+
             float blockY = playerCtrl.ISDashAvail ? maxJumpY + 13f : currY + 10f;
-            
+
+            int ranNum = Random.Range(0, 101);
+            int ranItem = Random.Range(0, 2);
+
             Block block = ObjectPool.GetObject();
+            
+            block.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            
+            if (ranNum == 10 || ranNum == 20)
+            {
+                switch (ranItem)
+                {
+                    case 0:
+                        block.GetComponentInChildren<TextMeshProUGUI>().text = "J";
+                        break;
+                    case 1:
+                        block.GetComponentInChildren<TextMeshProUGUI>().text = "L";
+                        break;
+                    case 2:
+                        block.GetComponentInChildren<TextMeshProUGUI>().text = "G";
+                        break;
+                }
+            }
+            
             block.transform.position = new Vector3(x, blockY, 0f);
 
             if (uiManager.IsGameStarted) spawnTime = Random.Range(0.2f, 0.3f);
