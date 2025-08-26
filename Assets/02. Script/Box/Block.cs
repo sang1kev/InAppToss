@@ -7,8 +7,11 @@ public class Block : MonoBehaviour
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private UIManager uiManager;
 
-    [SerializeField]private GameObject[] itemCanvs;
+    [SerializeField] private GameObject[] itemCanvs;
 
+    public enum ItemIndex { Jump, Life, Ground, None };
+    public ItemIndex itemIndex;
+    
     private Animator blockAnim;
 
     private void Start()
@@ -16,9 +19,11 @@ public class Block : MonoBehaviour
         soundManager = FindAnyObjectByType<SoundManager>();
         uiManager = FindAnyObjectByType<UIManager>();
         blockAnim = GetComponent<Animator>();
+        itemIndex = ItemIndex.None;
 
         blockAnim.SetBool("isBroke", false);
     }
+
 
     private void Update()
     {
@@ -26,6 +31,12 @@ public class Block : MonoBehaviour
             return;
         
         MoveBlock();
+    }
+    public void ItemUpdate()
+    {
+        itemCanvs[0].SetActive(itemIndex == ItemIndex.Jump);
+        itemCanvs[1].SetActive(itemIndex == ItemIndex.Life);
+        itemCanvs[2].SetActive(itemIndex == ItemIndex.Ground);
     }
 
     void MoveBlock()

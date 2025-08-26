@@ -408,10 +408,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundManager: {fileID: 0}
+  uiManager: {fileID: 0}
   itemCanvs:
-  - {fileID: 4705684601319199557}
   - {fileID: 1319601561860228356}
   - {fileID: 5330451690784908110}
+  - {fileID: 4705684601319199557}
+  itemIndex: 0
 --- !u!95 &5632290930214786736
 Animator:
   serializedVersion: 7
@@ -663,7 +665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5260902541356789318
 RectTransform:
   m_ObjectHideFlags: 0
@@ -753,9 +755,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5260902541356789318}
   - {fileID: 828619231896986068}
   - {fileID: 1278312144953825583}
+  - {fileID: 5260902541356789318}
   m_Father: {fileID: 9129176221130241300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

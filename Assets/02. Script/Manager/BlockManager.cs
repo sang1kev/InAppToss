@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BlockManager : MonoBehaviour
@@ -101,7 +102,9 @@ public class BlockManager : MonoBehaviour
     {
         float lastX = float.MinValue;
         const float minDist = 1.5f;
-        float maxJumpY = playerCtrl.DidPlayerExit ? playerCtrl.transform.position.y + Time.deltaTime : playerCtrl.transform.position.y;
+        float maxJumpY = playerCtrl.DidPlayerExit
+            ? playerCtrl.transform.position.y + Time.deltaTime
+            : playerCtrl.transform.position.y;
 
         while (true)
         {
@@ -110,7 +113,7 @@ public class BlockManager : MonoBehaviour
                 yield return null;
                 continue;
             }
-            
+
             int x;
             int tries = 10;
             do
@@ -119,9 +122,9 @@ public class BlockManager : MonoBehaviour
             } while (Mathf.Abs(x - lastX) < minDist && --tries > 0);
 
             lastX = x;
-            
+
             float currY = playerCtrl.transform.position.y;
-            
+
             if (playerCtrl.ISDashAvail)
             {
                 if (currY > maxJumpY)
@@ -131,15 +134,46 @@ public class BlockManager : MonoBehaviour
             {
                 maxJumpY = currY;
             }
-            
+
             float blockY = playerCtrl.ISDashAvail ? maxJumpY + 13f : currY + 10f;
-            
+
+            int ranNum = Random.Range(0, 101);
+            int ranItem = Random.Range(0, 3);
+
             Block block = ObjectPool.GetObject();
+
+            if (ranNum < 50)
+            {
+                switch (ranItem)
+                {
+                    case 0:
+                        block.itemIndex = Block.ItemIndex.Jump;
+                        block.ItemUpdate();
+                        Debug.Log("Jump");
+                        break;
+                    case 1:
+                        block.itemIndex = Block.ItemIndex.Life;
+                        block.ItemUpdate();
+                        Debug.Log("Life");
+                        break;
+                    case 2:
+                        block.itemIndex = Block.ItemIndex.Ground;
+                        block.ItemUpdate();
+                        Debug.Log("Ground");
+                        break;
+                }
+            }
+            else
+            {
+                block.itemIndex = Block.ItemIndex.None;
+                block.ItemUpdate();
+            }
+
             block.transform.position = new Vector3(x, blockY, 0f);
 
             if (uiManager.IsGameStarted) spawnTime = Random.Range(0.2f, 0.3f);
             else spawnTime = Random.Range(0.8f, 1.0f);
-            
+
             yield return new WaitForSeconds(spawnTime);
         }
     }
