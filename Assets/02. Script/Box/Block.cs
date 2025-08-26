@@ -23,6 +23,11 @@ public class Block : MonoBehaviour
         blockAnim.SetBool("isBroke", false);
     }
 
+    void OnEnable()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
+
 
     private void Update()
     {

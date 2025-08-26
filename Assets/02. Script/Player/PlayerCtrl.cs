@@ -20,6 +20,7 @@ public class PlayerCtrl : MonoBehaviour
     public bool ISDashAvail { get;  private set; }
     public bool DidPlayerExit { get;  private set; }
     public bool ISDead { get; private set; }
+    public bool ISTempGround { get; set; }
 
     private bool bonusLife;
     private bool isLifeUsed;
@@ -71,7 +72,6 @@ public class PlayerCtrl : MonoBehaviour
 
             if (timer <= 2f)
             {
-                ISDashAvail = true;
                 float t = Mathf.PingPong(timer * 2f, 1f);
                 spriteRenderer.color = Color.Lerp(Color.white, color, t);
             }
@@ -184,6 +184,7 @@ public class PlayerCtrl : MonoBehaviour
         if (other.gameObject.CompareTag("Box"))
         {
             Block block = other.gameObject.GetComponent<Block>();
+            block.GetComponent<BoxCollider2D>().enabled = false;
 
             if (block != null)
             {
