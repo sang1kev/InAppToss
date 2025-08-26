@@ -7,9 +7,16 @@ public class Ground : MonoBehaviour
     
     private Animator groundAnim;
 
-    void Start()
+    void Awake()
     {
+        playerCtrl = FindFirstObjectByType<PlayerCtrl>();
         groundAnim = GetComponent<Animator>();
+        groundAnim.SetBool("isBroke", false);
+    }
+
+    void OnEnable()
+    {
+        groundAnim.SetBool("isBroke", false);
     }
 
     void OnCollisionExit2D(Collision2D other)
@@ -34,6 +41,7 @@ public class Ground : MonoBehaviour
         groundAnim.SetTrigger("Broke");
 
         yield return new WaitForSeconds(2.25f);
+        groundAnim.SetBool("isBroke", true);
         groundAnim.gameObject.SetActive(false);
     }
 }

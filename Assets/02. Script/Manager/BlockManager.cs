@@ -137,31 +137,24 @@ public class BlockManager : MonoBehaviour
 
             float blockY = playerCtrl.ISDashAvail ? maxJumpY + 13f : currY + 10f;
 
-            int ranNum = Random.Range(0, 101);
-            int ranItem = Random.Range(0, 3);
+            int ranNum = Random.Range(0, 201);
 
             Block block = ObjectPool.GetObject();
 
-            if (ranNum < 50)
+            if (ranNum < 1)
             {
-                switch (ranItem)
-                {
-                    case 0:
-                        block.itemIndex = Block.ItemIndex.Jump;
-                        block.ItemUpdate();
-                        Debug.Log("Jump");
-                        break;
-                    case 1:
-                        block.itemIndex = Block.ItemIndex.Life;
-                        block.ItemUpdate();
-                        Debug.Log("Life");
-                        break;
-                    case 2:
-                        block.itemIndex = Block.ItemIndex.Ground;
-                        block.ItemUpdate();
-                        Debug.Log("Ground");
-                        break;
-                }
+                block.itemIndex = Block.ItemIndex.Life;
+                block.ItemUpdate();
+            }
+            else if (ranNum >= 1 && ranNum < 6)
+            {
+                block.itemIndex = Block.ItemIndex.Jump;
+                block.ItemUpdate();
+            }
+            else if (ranNum >= 6 && ranNum < 11)
+            {
+                block.itemIndex = Block.ItemIndex.Ground;
+                block.ItemUpdate();
             }
             else
             {

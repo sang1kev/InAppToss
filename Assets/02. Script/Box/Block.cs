@@ -19,7 +19,6 @@ public class Block : MonoBehaviour
         soundManager = FindAnyObjectByType<SoundManager>();
         uiManager = FindAnyObjectByType<UIManager>();
         blockAnim = GetComponent<Animator>();
-        itemIndex = ItemIndex.None;
 
         blockAnim.SetBool("isBroke", false);
     }
@@ -51,18 +50,18 @@ public class Block : MonoBehaviour
         }
     }
 
+    public void OnHitByPlayer()
+    {
+        for (int i = 0; i < itemCanvs.Length; i++)
+        {
+            itemCanvs[i].SetActive(false);
+        }
+        soundManager.EffectSoundPlay("BlockBreak");
+        StartCoroutine(BrokeCoroutine());
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            for (int i = 0; i < itemCanvs.Length; i++)
-            {
-                itemCanvs[i].SetActive(false);
-            }
-            soundManager.EffectSoundPlay("BlockBreak");
-            StartCoroutine(BrokeCoroutine());
-        }
-
         if (other.CompareTag("DeadZone"))
         {
             for (int i = 0;  i < itemCanvs.Length; i++)

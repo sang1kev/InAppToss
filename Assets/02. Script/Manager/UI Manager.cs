@@ -14,9 +14,12 @@ public class UIManager : MonoBehaviour
     private PlayerCtrl player;
     private Ground ground;
 
+    [SerializeField] private GameObject tempGroundPrefab;
+
     [SerializeField] private TextMeshProUGUI inGame_noticeText;
     [SerializeField] private TextMeshProUGUI inGame_currScoreText;
     [SerializeField] private TextMeshProUGUI inGame_maxScoreText;
+
 
     [SerializeField] private TextMeshProUGUI Die_currScoreText;
     [SerializeField] private TextMeshProUGUI Die_maxScoreText;
@@ -25,6 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject inGameSet;
     [SerializeField] private GameObject DieSet;
     [SerializeField] private GameObject joyStickUI;
+    [SerializeField] private GameObject extraLife;
 
     private bool hasDieUIShown = false;
     private float startTime;
@@ -128,5 +132,17 @@ public class UIManager : MonoBehaviour
         ground.gameObject.SetActive(true);
         ground.StopAllCoroutines();
         SceneManager.LoadScene(0);
+    }
+
+    public void ActiveExtraLife(bool isActive)
+    {
+        extraLife.SetActive(isActive);
+    }
+
+    public void GroundItem()
+    {
+        Vector3 pos = player.transform.position;
+        Vector3 targetPos = new Vector3(pos.x, pos.y - 1f, 0f);
+        GameObject tempGround = Instantiate(tempGroundPrefab, targetPos, Quaternion.identity);
     }
 }

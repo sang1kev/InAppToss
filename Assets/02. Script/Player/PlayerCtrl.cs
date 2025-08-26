@@ -9,6 +9,7 @@ public class PlayerCtrl : MonoBehaviour
 
     private Rigidbody2D playerRb;
     private Animator playerAnim;
+    private SpriteRenderer spriteRenderer;
 
     private Vector3 inputDir;
 
@@ -20,13 +21,71 @@ public class PlayerCtrl : MonoBehaviour
     public bool DidPlayerExit { get;  private set; }
     public bool ISDead { get; private set; }
 
+    private bool bonusLife;
+    private bool isLifeUsed;
+    private bool jumpBoost;
+    private float timer;
+
+    private Color color;
+
+
     void Start()
     {
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         ISDashAvail = false;
         DidPlayerExit = false;
         ISDead = false;
+        timer = 0;
+        
+        isLifeUsed = false;
+        bonusLife = false;
+        jumpBoost = false;
+    }
+
+    void Update()
+    {
+        if (jumpBoost)
+        {
+            color = new Color(2f, 2f, 0f, 1f);
+            timer += Time.deltaTime;
+
+            if (timer <= 3f)
+            {
+                ISDashAvail = true;
+                float t = Mathf.PingPong(timer * 2f, 1f);
+                spriteRenderer.color = Color.Lerp(Color.white, color, t);
+            }
+            else
+            {
+                jumpBoost = false;
+                timer = 0;
+                spriteRenderer.color = Color.white;
+            }
+        }
+        else if (isLifeUsed)
+        {
+            color = new Color(2f, 0f, 0f, 1f);
+            timer += Time.deltaTime;
+
+            if (timer <= 2f)
+            {
+                ISDashAvail = true;
+                float t = Mathf.PingPong(timer * 2f, 1f);
+                spriteRenderer.color = Color.Lerp(Color.white, color, t);
+            }
+            else
+            {
+                timer = 0;
+                spriteRenderer.color = Color.white;
+
+            }
+        }
+        else
+        {
+            spriteRenderer.color = Color.white;
+        }
     }
 
     private void Dash()
@@ -38,7 +97,14 @@ public class PlayerCtrl : MonoBehaviour
         playerRb.AddForceX(velocity.x * 0.5f, ForceMode2D.Impulse);
         playerRb.AddForceY(velocity.y, ForceMode2D.Impulse);
 
-        ISDashAvail = false;
+        if (!jumpBoost)
+        {
+            ISDashAvail = false;
+        }
+        else
+        {
+            ISDashAvail = true;
+        }
     }
 
     public void InputJoyStick(float x, float y)
@@ -67,17 +133,38 @@ public class PlayerCtrl : MonoBehaviour
 
     void OnCollisionEnter2D (Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("TempGround"))
         {
             ISDashAvail = true;
+            playerRb.AddForce(Vector3.zero);
         }
         if (other.gameObject.CompareTag("DeadZone"))
         {
-            ISDead = true;
-            gameManager.IsGameOver = true;
-            gameObject.SetActive(false);
-            soundManager.EffectSoundPlay("GameOver");
-            soundManager.BGMSoundPlay("GameOverBGM");
+            if (bonusLife && !isLifeUsed)
+            {
+                playerRb.linearVelocity = Vector3.zero;
+                float addX = transform.position.x >= 0 ? 2 : -2;
+                
+                playerRb.AddForce(new Vector2(addX, 15f), ForceMode2D.Impulse);
+                
+                timer = 0;
+                isLifeUsed = true;
+                ISDashAvail = true;
+                bonusLife = false;
+                jumpBoost = false;
+
+                gameManager.ActiveExtraLife(bonusLife);
+                soundManager.EffectSoundPlay("ExtraLifeUse");
+            }
+            else
+            {
+                ISDead = true;
+                gameManager.IsGameOver = true;
+
+                gameObject.SetActive(false);
+                soundManager.EffectSoundPlay("GameOver");
+                soundManager.BGMSoundPlay("GameOverBGM");
+            }
         }
     }
 
@@ -87,6 +174,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             ISDashAvail = false;
             DidPlayerExit = true;
+
             gameManager.SetGameStarted(true);
         }
     }
@@ -95,6 +183,30 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Box"))
         {
+            Block block = other.gameObject.GetComponent<Block>();
+
+            if (block != null)
+            {
+                if (block.itemIndex == Block.ItemIndex.Jump)
+                {
+                    timer = 0;
+                    jumpBoost = true;
+                    soundManager.EffectSoundPlay("JumpBoost");
+                }
+                else if (block.itemIndex == Block.ItemIndex.Life && !isLifeUsed)
+                {
+                    bonusLife = true;
+                    gameManager.ActiveExtraLife(bonusLife);
+                    soundManager.EffectSoundPlay("ExtraLifeGain");
+                }
+                else if (block.itemIndex == Block.ItemIndex.Ground)
+                {
+                    gameManager.GroundItem();
+                }
+
+                    block.OnHitByPlayer();
+            }
+
             ISDashAvail = true;
             inputDir = Vector3.zero;
             playerRb.AddForce(Vector3.zero);
