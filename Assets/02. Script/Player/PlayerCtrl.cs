@@ -24,6 +24,7 @@ public class PlayerCtrl : MonoBehaviour
 
     private bool bonusLife;
     private bool isLifeUsed;
+    private bool secondLife;
     private bool jumpBoost;
     private float timer;
 
@@ -43,6 +44,7 @@ public class PlayerCtrl : MonoBehaviour
         isLifeUsed = false;
         bonusLife = false;
         jumpBoost = false;
+        secondLife = false;
     }
 
     void Update()
@@ -60,13 +62,18 @@ public class PlayerCtrl : MonoBehaviour
             }
             else
             {
+                if (secondLife)
+                {
+                    bonusLife = false;
+                }
                 jumpBoost = false;
                 timer = 0;
                 spriteRenderer.color = Color.white;
             }
         }
-        else if (isLifeUsed)
+        else if (bonusLife && isLifeUsed)
         {
+            secondLife = true;
             color = new Color(2f, 0f, 0f, 1f);
             timer += Time.deltaTime;
 
@@ -77,9 +84,9 @@ public class PlayerCtrl : MonoBehaviour
             }
             else
             {
+                bonusLife = false;
                 timer = 0;
                 spriteRenderer.color = Color.white;
-
             }
         }
         else
@@ -150,10 +157,9 @@ public class PlayerCtrl : MonoBehaviour
                 timer = 0;
                 isLifeUsed = true;
                 ISDashAvail = true;
-                bonusLife = false;
                 jumpBoost = false;
 
-                gameManager.ActiveExtraLife(bonusLife);
+                gameManager.ActiveExtraLife(false);
                 soundManager.EffectSoundPlay("ExtraLifeUse");
             }
             else
